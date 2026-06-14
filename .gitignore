@@ -1,0 +1,18 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+env/
+.env
+
+# Database
+# We ignore the local DB so you don't overwrite production state or commit test data
+numera.db
+
+# OS/IDE generated files
+.DS_Store
+.vscode/
+.idea/
