@@ -43,7 +43,24 @@ function closeOverlay() {
 }
 
 function launchGame(mode) {
-    alert(`Launching ${currentGameId} in ${mode} mode!`);
+    // Hide the overlay visually, but KEEP the currentGameId intact
+    document.getElementById('game-overlay').style.display = 'none';
+    
+    if (currentGameId === 'put_in_the_box' && mode === 'digital') {
+        document.getElementById('active-game-container').style.display = 'flex';
+        PutInTheBox.init('game-canvas');
+    } else {
+        alert(`Coming soon! Launching ${currentGameId} in ${mode} mode.`);
+    }
+}
+
+function exitGame() {
+    document.getElementById('active-game-container').style.display = 'none';
+    document.getElementById('game-canvas').innerHTML = ''; // Clean up memory
+    window.speechSynthesis.cancel(); // Stop any ongoing counting
+    
+    // NOW we clear the ID since we are completely exiting back to the dashboard
+    currentGameId = null; 
 }
 
 // Initialize

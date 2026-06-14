@@ -5,35 +5,172 @@ body {
     padding: 20px;
     text-align: center;
     touch-action: manipulation;
+    overscroll-behavior: none; /* Stops pull-to-refresh */
+    -webkit-user-select: none; /* Prevents text highlighting on Safari/iOS */
+    user-select: none;         /* Prevents text highlighting on standard browsers */
 }
-h1 { color: #333; font-size: 2.5rem; margin-bottom: 30px; }
+
+h1 {
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
 
 /* Grid Styles */
-.grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-.card {
-    background: white; border: 5px solid #4CAF50; border-radius: 20px;
-    padding: 40px 20px; width: 200px; cursor: pointer;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1); transition: transform 0.1s ease;
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
-.card:active { transform: scale(0.95); }
-.card h2 { font-size: 1.8rem; margin: 0; color: #555; pointer-events: none; }
-.empty-state { color: #888; font-size: 1.5rem; }
+
+.card {
+    background: white;
+    border: 5px solid #4CAF50;
+    border-radius: 20px;
+    padding: 40px 20px;
+    width: 200px;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease;
+}
+
+.card:active {
+    transform: scale(0.95);
+}
+
+.card h2 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: #555;
+    pointer-events: none;
+}
+
+.empty-state {
+    color: #888;
+    font-size: 1.5rem;
+}
 
 /* Game Overlay Styles */
 #game-overlay {
-    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(255, 255, 255, 0.95); z-index: 100;
-    flex-direction: column; justify-content: center; align-items: center;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 100;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
 .close-btn {
     position: absolute; top: 20px; right: 30px; font-size: 3rem;
     color: #ff5252; cursor: pointer; font-weight: bold; border: none; background: none;
+    z-index: 300; /* <-- This forces the button to the front layer */
 }
+
 .mode-btn {
-    background: #2196F3; color: white; border: none; border-radius: 20px;
-    padding: 30px; margin: 15px; font-size: 2rem; width: 80%; max-width: 400px;
-    cursor: pointer; box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    background: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 15px;
+    font-size: 2rem;
+    width: 80%;
+    max-width: 400px;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
-.mode-btn.companion { background: #FF9800; }
-.mode-btn:active { transform: scale(0.95); }
-#overlay-title { font-size: 3rem; color: #333; margin-bottom: 40px; }
+
+.mode-btn.companion {
+    background: #FF9800;
+}
+
+.mode-btn:active {
+    transform: scale(0.95);
+}
+
+#overlay-title {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+/* --- Active Game Container --- */
+#active-game-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #fff; z-index: 200; display: flex; flex-direction: column;
+    touch-action: none; /* Disables all native swipe/scroll gestures inside the game */
+}
+
+#game-canvas {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: #e8f5e9;
+}
+
+/* --- Put-in-the-Box Specifics --- */
+.game-box {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    height: 150px;
+    background: #8D6E63;
+    border-radius: 10px;
+    border: 8px solid #5D4037;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.5);
+    z-index: 10;
+    transition: transform 0.2s;
+}
+
+.game-item {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: #FF5252;
+    border-radius: 50%;
+    border: 4px solid #D32F2F;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    cursor: grab;
+    touch-action: none;
+    /* Crucial for mobile dragging */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    z-index: 20;
+    user-select: none;
+}
+
+.game-item:active {
+    cursor: grabbing;
+}
+
+.success-pop {
+    animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

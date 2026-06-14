@@ -21,6 +21,12 @@
         <button class="mode-btn companion" id="btn-companion" onclick="launchGame('companion')">🧸 Play in Room</button>
     </div>
 
+    <div id="active-game-container" style="display: none;">
+        <button class="close-btn" onclick="exitGame()">×</button>
+        <div id="game-canvas"></div>
+    </div>    
+
     <script src="/static/js/app.js"></script>
+    <script src="/static/js/games/put_in_the_box.js"></script> 
 </body>
 </html>
