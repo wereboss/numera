@@ -1,0 +1,39 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    touch-action: manipulation;
+}
+h1 { color: #333; font-size: 2.5rem; margin-bottom: 30px; }
+
+/* Grid Styles */
+.grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+.card {
+    background: white; border: 5px solid #4CAF50; border-radius: 20px;
+    padding: 40px 20px; width: 200px; cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1); transition: transform 0.1s ease;
+}
+.card:active { transform: scale(0.95); }
+.card h2 { font-size: 1.8rem; margin: 0; color: #555; pointer-events: none; }
+.empty-state { color: #888; font-size: 1.5rem; }
+
+/* Game Overlay Styles */
+#game-overlay {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255, 255, 255, 0.95); z-index: 100;
+    flex-direction: column; justify-content: center; align-items: center;
+}
+.close-btn {
+    position: absolute; top: 20px; right: 30px; font-size: 3rem;
+    color: #ff5252; cursor: pointer; font-weight: bold; border: none; background: none;
+}
+.mode-btn {
+    background: #2196F3; color: white; border: none; border-radius: 20px;
+    padding: 30px; margin: 15px; font-size: 2rem; width: 80%; max-width: 400px;
+    cursor: pointer; box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+.mode-btn.companion { background: #FF9800; }
+.mode-btn:active { transform: scale(0.95); }
+#overlay-title { font-size: 3rem; color: #333; margin-bottom: 40px; }

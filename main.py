@@ -75,6 +75,21 @@ def get_published_games():
     conn.close()
     return games
 
+@app.get("/api/games/{game_id}")
+def get_game(game_id: str):
+    """Kid endpoint: Returns details for a specific game."""
+    conn = sqlite3.connect(DB_FILE)
+    conn.row_factory = dict_factory
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM games WHERE id = ?", (game_id,))
+    game = cursor.fetchone()
+    conn.close()
+    
+    if not game:
+        raise HTTPException(status_code=404, detail="Game not found")
+        
+    return game    
+
 @app.post("/api/admin/games/{game_id}/toggle-publish")
 def toggle_publish(game_id: str):
     """Parent endpoint: Toggles the publish state of a game."""
