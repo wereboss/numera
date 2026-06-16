@@ -10,23 +10,25 @@
 <body>
 
     <h1>Numera 🎈</h1>
-    <div class="grid" id="game-grid">
-        <div class="empty-state">Loading toys...</div>
+    
+    <div class="mode-toggle-container">
+        <button id="toggle-digital" class="mode-tab active" onclick="setMode('digital')">📱 Play on Screen</button>
+        <button id="toggle-companion" class="mode-tab" onclick="setMode('companion')">🧸 Play in Room</button>
     </div>
 
-    <div id="game-overlay">
-        <button class="close-btn" onclick="closeOverlay()">×</button>
-        <h2 id="overlay-title">Game Title</h2>
-        <button class="mode-btn" id="btn-digital" onclick="launchGame('digital')">📱 Play on Screen</button>
-        <button class="mode-btn companion" id="btn-companion" onclick="launchGame('companion')">🧸 Play in Room</button>
+    <div class="grid" id="game-grid">
+        <div class="empty-state">Loading toys...</div>
     </div>
 
     <div id="active-game-container" style="display: none;">
         <button class="close-btn" onclick="exitGame()">×</button>
         <div id="game-canvas"></div>
-    </div>    
+    </div>
 
+    <script src="/static/js/games/template_a.js"></script>
+    <script src="/static/js/games/template_b.js"></script>
+    <script src="/static/js/games/template_c.js"></script>
+    <script src="/static/js/games/template_d.js"></script>
     <script src="/static/js/app.js"></script>
-    <script src="/static/js/games/put_in_the_box.js"></script> 
 </body>
 </html>

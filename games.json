@@ -1,0 +1,128 @@
+[
+  {
+    "id": "put_in_the_box",
+    "title": "Put In The Box",
+    "icon": "box.svg",
+    "has_digital_mode": true,
+    "has_companion_mode": true,
+    "template_type": "template_a",
+    "config": {
+      "digital": {
+        "item_emoji": "🎃",
+        "target_emoji": "🧺"
+      }
+    }
+  },
+  {
+    "id": "dice_and_do",
+    "title": "Dice & Do",
+    "icon": "dice.svg",
+    "has_digital_mode": true,
+    "has_companion_mode": true,
+    "template_type": "template_b",
+    "config": {}
+  },
+  {
+    "id": "feed_the_cats",
+    "title": "Feed the Cats",
+    "icon": "cat.svg",
+    "has_digital_mode": true,
+    "has_companion_mode": true,
+    "template_type": "template_c",
+    "config": {
+      "digital":{
+        "count_range": [3, 7],
+        "receiver_mode": "single"
+      }
+    } 
+  },
+  {
+    "id": "animal_sorter",
+    "title": "Send Animal Home",
+    "icon": "bear.svg",
+    "has_digital_mode": true,
+    "has_companion_mode": true,
+    "template_type": "template_d",
+    "config": {}
+  },
+  {
+    "id": "color_sorter",
+    "title": "Colour Buckets",
+    "icon": "bear.svg",
+    "has_digital_mode": true,
+    "has_companion_mode": true,
+    "template_type": "template_d",
+    "config": {
+       "digital": {
+        "category_count": 3,
+        "items_per_category": [2, 7],
+        "categories": [
+          {
+            "name": "Red",
+            "bucket_emoji": "🔴",
+            "description": "Red Bucket",
+            "instruction": "Put the red things in the Red Bucket!",
+            "items": ["🍎", "🍓", "🍅", "🚒", "🎈", "🦀","🌹"]
+          },
+          {
+            "name": "Orange",
+            "bucket_emoji": "🟠",
+            "description": "Orange Bucket",
+            "instruction": "Put the orange things in the Orange Bucket!",
+            "items": ["🍊", "🥕", "🦁", "🦊", "🏀","🎃"]
+          },
+          {
+            "name": "Yellow",
+            "bucket_emoji": "🟡",
+            "description": "Yellow Bucket",
+            "instruction": "Put the yellow things in the Yellow Bucket!",
+            "items": ["☀️", "🍌", "🍋", "🐤", "⭐️","🌽"]
+          },
+          {
+            "name": "Green",
+            "bucket_emoji": "🟢",
+            "description": "Green Bucket",
+            "instruction": "Put the green things in the Green Bucket!",
+            "items": ["🥒", "🥦", "🍏", "🍐", "🐸"]
+          },
+          {
+            "name": "Blue",
+            "bucket_emoji": "🔵",
+            "description": "Blue Bucket",
+            "instruction": "Put the blue things in the Blue Bucket!",
+            "items": ["🫐", "🐳", "🐬", "🎽", "🚙"]
+          },
+          {
+            "name": "Purple",
+            "bucket_emoji": "🟣",
+            "description": "Purple Bucket",
+            "instruction": "Put the purple things in the Purple Bucket!",
+            "items": ["🍇", "🍆", "🔮", "🦄", "👾"]
+          },
+          {
+            "name": "Brown",
+            "bucket_emoji": "🟤",
+            "description": "Brown Bucket",
+            "instruction": "Put the brown things in the Brown Bucket!",
+            "items": ["🥔", "🥨", "🐻", "🪵", "☕"]
+          },
+          {
+            "name": "Black",
+            "bucket_emoji": "⚫",
+            "description": "Black Bucket",
+            "instruction": "Put the black things in the Black Bucket!",
+            "items": ["🐈‍⬛", "🐜", "🕷️", "🖤", "🎩"]
+          },
+          {
+            "name": "White",
+            "bucket_emoji": "⚪",
+            "description": "White Bucket",
+            "instruction": "Put the white things in the White Bucket!",
+            "items": ["🥛", "🐇", "🐑", "👻", "☁️","⛄","🦷"]
+          }
+
+        ]
+      }
+    }
+  }
+]

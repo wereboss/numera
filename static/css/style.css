@@ -51,20 +51,38 @@ h1 {
     font-size: 1.5rem;
 }
 
-/* Game Overlay Styles */
-#game-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    z-index: 100;
-    flex-direction: column;
+/* --- Global Mode Toggle --- */
+.mode-toggle-container {
+    display: flex;
     justify-content: center;
-    align-items: center;
+    background: #e0e0e0;
+    border-radius: 40px;
+    padding: 10px;
+    max-width: 500px;
+    margin: 0 auto 40px auto;
 }
+
+.mode-tab {
+    flex: 1;
+    padding: 15px 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #888;
+    background: transparent;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mode-tab.active {
+    background: #fff;
+    color: #333;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transform: scale(1.05);
+}
+
+/* (Remember to delete the old #game-overlay styles to keep your CSS clean!) */
 
 .close-btn {
     position: absolute; top: 20px; right: 30px; font-size: 3rem;
@@ -72,23 +90,6 @@ h1 {
     z-index: 300; /* <-- This forces the button to the front layer */
 }
 
-.mode-btn {
-    background: #2196F3;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 30px;
-    margin: 15px;
-    font-size: 2rem;
-    width: 80%;
-    max-width: 400px;
-    cursor: pointer;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-}
-
-.mode-btn.companion {
-    background: #FF9800;
-}
 
 .mode-btn:active {
     transform: scale(0.95);
@@ -174,3 +175,186 @@ h1 {
         transform: scale(1);
     }
 }
+
+/* --- Template A Specifics --- */
+.choices-container {
+    display: flex; 
+    gap: 30px; 
+    justify-content: center; 
+    margin-top: 50px;
+    flex-wrap: wrap; 
+    width: 100%;
+}
+
+.choice-btn {
+    background: #2196F3; 
+    color: white; 
+    border: none; 
+    border-radius: 25px;
+    width: 160px; /* Force massive square boxes */
+    height: 160px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    font-size: 6rem; /* Gigantic numbers */
+    font-weight: bold; 
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
+    transition: transform 0.1s, background-color 0.1s;
+    touch-action: manipulation; /* Extra safety for mobile taps */
+}
+
+.choice-btn:active { 
+    transform: scale(0.92); 
+    background-color: #1976D2; /* Slightly darker blue on tap for visual feedback */
+}
+
+/* --- Template B Specifics --- */
+.clicker-container {
+    display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+    height: 90vh; /* Takes up almost the whole screen */
+    padding: 20px; box-sizing: border-box; width: 100%;
+}
+
+.clicker-header {
+    font-size: 4rem; color: #333; margin-top: 40px; font-weight: bold; text-align: center;
+}
+
+/* Add this new block */
+.highlight-number {
+    display: inline-block;
+    background: #2196F3; /* Template A Blue */
+    color: white;
+    padding: 5px 25px;
+    border-radius: 20px;
+    margin: 0 10px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    vertical-align: text-bottom; /* Keeps it visually aligned with the surrounding text */
+    line-height: 1.2;
+}
+
+.progress-tracker {
+    display: flex; gap: 20px; margin: 30px 0; flex-wrap: wrap; justify-content: center;
+}
+
+.progress-dot {
+    width: 60px; height: 60px; border-radius: 50%; background: #e0e0e0;
+    border: 6px solid #bdbdbd; transition: background 0.2s, transform 0.2s;
+}
+
+.progress-dot.filled {
+    background: #4CAF50; border-color: #2E7D32; transform: scale(1.15);
+}
+
+/* The Massive 3D Arcade Button */
+.giant-click-btn {
+    flex-grow: 1; width: 90%; max-width: 600px; max-height: 500px;
+    background: #FF9800; border: none; border-radius: 60px;
+    font-size: 15rem; /* Massive emoji */
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 25px 0 #F57C00, 0 35px 20px rgba(0,0,0,0.3); /* The 3D edge and drop shadow */
+    cursor: pointer; touch-action: manipulation; 
+    transition: transform 0.1s, box-shadow 0.1s;
+    user-select: none; -webkit-user-select: none;
+    margin-bottom: 50px;
+}
+
+.giant-click-btn:active {
+    transform: translateY(20px); /* Physically pushes the button down */
+    box-shadow: 0 5px 0 #F57C00, 0 10px 10px rgba(0,0,0,0.3); /* Shrinks the 3D edge */
+    background: #FB8C00;
+}
+
+.giant-click-btn.locked {
+    background: #A5D6A7; box-shadow: 0 25px 0 #81C784; pointer-events: none;
+}
+
+/* --- Template C Specifics (The Split Screen) --- */
+.split-screen-container {
+    display: flex; flex-direction: column; height: 85vh; width: 100%;
+    border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.split-top {
+    flex: 1; background: #E8F5E9; /* Light green destination */
+    display: flex; justify-content: space-evenly; align-items: center;
+    border-bottom: 5px dashed #C8E6C9; padding: 20px;
+}
+
+.split-bottom {
+    flex: 1; background: #E3F2FD; /* Light blue inventory */
+    display: flex; justify-content: center; align-items: center; flex-wrap: wrap;
+    gap: 20px; padding: 20px; position: relative;
+}
+
+.receiver-slot {
+    font-size: 6rem; width: 120px; height: 120px;
+    display: flex; justify-content: center; align-items: center;
+    background: white; border-radius: 20px; box-shadow: inset 0 5px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.receiver-slot.satisfied {
+    background: #FFF9C4; transform: scale(1.1); animation: pop 0.3s ease;
+}
+
+.draggable-item {
+    font-size: 5rem; cursor: pointer; touch-action: none; z-index: 20;
+    transition: transform 0.1s; width: 100px; height: 100px;
+    display: flex; justify-content: center; align-items: center;
+}
+
+/* --- Template D Specifics (The Sorter) --- */
+.sorter-container {
+    display: flex; flex-direction: column; height: 85vh; width: 100%;
+}
+
+.buckets-area {
+    display: flex; justify-content: space-evenly; align-items: flex-end;
+    padding: 20px; border-bottom: 5px solid #CFD8DC; background: #ECEFF1;
+    border-radius: 20px 20px 0 0; min-height: 250px;
+}
+
+.bucket-dropzone {
+    display: flex; flex-direction: column; align-items: center;
+    cursor: pointer; transition: transform 0.2s;
+}
+
+.bucket-dropzone:active { transform: scale(0.95); }
+
+.bucket-emoji {
+    font-size: 8rem; line-height: 1; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+}
+
+.bucket-label {
+    background: white; padding: 5px 15px; border-radius: 15px;
+    font-weight: bold; font-size: 1.2rem; margin-top: -10px; z-index: 2;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.bucket-description {
+    font-size: 0.9rem; color: #78909C; margin-top: 5px;
+}
+
+.messy-pile {
+    flex: 1; background: #FAFAFA; display: flex; justify-content: center;
+    align-content: center; flex-wrap: wrap; gap: 30px; padding: 40px;
+    border-radius: 0 0 20px 20px; position: relative;
+}
+
+.draggable-sort-item {
+    font-size: 5rem; cursor: pointer; touch-action: none; z-index: 20;
+    transition: transform 0.1s; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.15));
+}
+
+/* Animations for interaction */
+@keyframes wobble {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px) rotate(-5deg); }
+    50% { transform: translateX(10px) rotate(5deg); }
+    75% { transform: translateX(-10px) rotate(-5deg); }
+    100% { transform: translateX(0); }
+}
+
+.wobble { animation: wobble 0.4s ease; }
+.swallow { transform: scale(1.2); transition: transform 0.2s; }

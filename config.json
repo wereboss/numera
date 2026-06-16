@@ -1,0 +1,99 @@
+{
+  "templates": {
+    "template_a": {
+      "digital": {
+        "item_emoji": "🍎",
+        "target_emoji": "📦",
+        "count_range": [1, 5],
+        "choice_count": 3,
+        "success_message": "Yay! The box is full! Great job!"
+      },
+      "companion": {
+        "instructions": [
+          "Step 1: Put {target_count} items next to a target.",
+          "Step 2: Write {choices} on empty flashcards.",
+          "Step 3: Ask the kid to move each item one by one as they count.",
+          "Step 4: Ask the kid to choose the flashcard with the final count."
+        ]
+      }
+    },
+    "template_b": {
+      "digital": {
+        "count_range": [2, 5],
+        "actions": [
+          {"name": "Jumps", "emoji": "🦘"},
+          {"name": "Claps", "emoji": "👏"},
+          {"name": "Stomps", "emoji": "🦖"}
+        ],
+        "success_message": "Awesome moves!"
+      },
+      "companion": {
+        "instructions": [
+          "Step 1: Make sure you have some open floor space.",
+          "Step 2: Ask your kid to do {target_count} {action_name}.",
+          "Step 3: Count out loud together: 1, 2, 3...",
+          "Step 4: Give them a big high-five!"
+        ]
+      }
+    },
+"template_c": {
+      "digital": {
+        "count_range": [2, 4],
+        "receiver_mode": "multiple",
+        "receivers": [
+          {"idle": "🐱", "satisfied": "😻", "item": "🐟"},
+          {"idle": "🐶", "satisfied": "💖", "item": "🦴"},
+          {"idle": "🐇", "satisfied": "🐰", "item": "🥕"},
+          {"idle": "🐒", "satisfied": "🐵", "item": "🍌"}
+        ],
+        "success_message": "Everyone is full!"
+      },
+      "companion": {
+        "instructions": [
+          "Step 1: Place {target_count} toys or stuffed animals on the floor.",
+          "Step 2: Hand your child the right 'food' (blocks, spoons, etc.) for each one.",
+          "Step 3: Ask them to feed each friend.",
+          "Step 4: When they are done, ask: 'Is everyone full?'"
+        ]
+      }
+    },
+"template_d": {
+      "digital": {
+        "category_count": 2,
+        "items_per_category": [2, 3],
+        "categories": [
+          {
+            "name": "Jungle",
+            "bucket_emoji": "🌴",
+            "description": "Wild animals",
+            "instruction": "Put the wild animals in the jungle!",
+            "items": ["🦁", "🐘", "🐍", "🦍", "🐯"]
+          },
+          {
+            "name": "Farm",
+            "bucket_emoji": "🏡",
+            "description": "Domestic animals",
+            "instruction": "Put the farm animals in the barn!",
+            "items": ["🐄", "🐖", "🐓", "🐎", "🐐"]
+          },
+          {
+            "name": "Ocean",
+            "bucket_emoji": "🌊",
+            "description": "Sea creatures",
+            "instruction": "Put the sea creatures in the ocean!",
+            "items": ["🐳", "🐙", "🦀", "🐬", "🐢"]
+          }
+        ],
+        "success_message": "All cleaned up!"
+      },
+      "companion": {
+        "instructions": [
+          "Step 1: Create physical zones for the categories: {category_names}.",
+          "Step 2: Tell your child the rules: {category_instructions}",
+          "Step 3: Hand them the mixed pile.",
+          "Step 4: Ask them to sort the pile until the floor is clean!"
+        ]
+      }
+    }
+  }
+}

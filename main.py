@@ -1,128 +1,108 @@
 import sqlite3
 import os
+import json
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
-from pydantic import BaseModel
-
-# Add these to your existing imports at the top
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 
 app = FastAPI(title="Numera API")
 DB_FILE = "numera.db"
+CONFIG_FILE = "config.json"
+GAMES_FILE = "games.json"
 
-# --- Database Initialization ---
+# --- Content Loaders ---
+def load_json_file(filepath):
+    if not os.path.exists(filepath):
+        raise FileNotFoundError(f"{filepath} is missing. Please create it.")
+    with open(filepath, 'r') as f:
+        return json.load(f)
+
+# --- Database Initialization (State Only) ---
 def init_db():
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
+    # Now the DB ONLY cares about state tracking!
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS games (
+        CREATE TABLE IF NOT EXISTS game_states (
             id TEXT PRIMARY KEY,
-            title TEXT NOT NULL,
-            icon TEXT NOT NULL,
-            is_published BOOLEAN NOT NULL CHECK (is_published IN (0, 1)),
-            has_digital_mode BOOLEAN NOT NULL CHECK (has_digital_mode IN (0, 1)),
-            has_companion_mode BOOLEAN NOT NULL CHECK (has_companion_mode IN (0, 1))
+            is_published BOOLEAN NOT NULL CHECK (is_published IN (0, 1))
         )
     ''')
-    
-    # Pre-populate the first game for testing Phase 1
-    cursor.execute("SELECT COUNT(*) FROM games")
-    if cursor.fetchone()[0] == 0:
-        cursor.execute('''
-            INSERT INTO games (id, title, icon, is_published, has_digital_mode, has_companion_mode)
-            VALUES (?, ?, ?, ?, ?, ?)
-        ''', ("put_in_the_box", "Put-in-the-Box", "box.svg", 0, 1, 1))
-        
     conn.commit()
     conn.close()
 
 init_db()
 
-# --- Helper to convert SQLite rows to dictionaries ---
-def dict_factory(cursor, row):
-    d = {}
-    for idx, col in enumerate(cursor.description):
-        # Convert SQLite 0/1 back to boolean for JSON
-        val = row[idx]
-        if col[0] in ['is_published', 'has_digital_mode', 'has_companion_mode']:
-            val = bool(val)
-        d[col[0]] = val
-    return d
+# --- Helper: Stitch JSON Content with DB State ---
+def get_stitched_games():
+    games = load_json_file(GAMES_FILE)
+    
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, is_published FROM game_states")
+    states = {row[0]: bool(row[1]) for row in cursor.fetchall()}
+    conn.close()
+    
+    # Inject the dynamic DB state into the static JSON definitions
+    for game in games:
+        game['is_published'] = states.get(game['id'], False) # Default to false if never published
+        
+    return games
 
 # --- API Endpoints ---
+
+@app.get("/api/config")
+def get_master_config():
+    """Returns the master template configurations."""
+    return JSONResponse(content=load_json_file(CONFIG_FILE))
 
 @app.get("/api/admin/games")
 def get_all_games():
     """Parent endpoint: Returns all games."""
-    conn = sqlite3.connect(DB_FILE)
-    conn.row_factory = dict_factory
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM games")
-    games = cursor.fetchall()
-    conn.close()
-    return games
+    return get_stitched_games()
 
 @app.get("/api/games/published")
 def get_published_games():
     """Kid endpoint: Returns only published games."""
+    all_games = get_stitched_games()
+    return [g for g in all_games if g['is_published']]
+
+@app.post("/api/admin/games/{game_id}/toggle-publish")
+def toggle_publish(game_id: str):
+    """Parent endpoint: Upserts the publish state."""
     conn = sqlite3.connect(DB_FILE)
-    conn.row_factory = dict_factory
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM games WHERE is_published = 1")
-    games = cursor.fetchall()
+    
+    cursor.execute("SELECT is_published FROM game_states WHERE id = ?", (game_id,))
+    row = cursor.fetchone()
+    
+    if row:
+        new_state = 0 if row[0] == 1 else 1
+        cursor.execute("UPDATE game_states SET is_published = ? WHERE id = ?", (new_state, game_id))
+    else:
+        new_state = 1
+        cursor.execute("INSERT INTO game_states (id, is_published) VALUES (?, 1)", (game_id,))
+        
+    conn.commit()
     conn.close()
-    return games
+    return {"id": game_id, "is_published": bool(new_state)}
 
 @app.get("/api/games/{game_id}")
 def get_game(game_id: str):
     """Kid endpoint: Returns details for a specific game."""
-    conn = sqlite3.connect(DB_FILE)
-    conn.row_factory = dict_factory
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM games WHERE id = ?", (game_id,))
-    game = cursor.fetchone()
-    conn.close()
-    
-    if not game:
-        raise HTTPException(status_code=404, detail="Game not found")
-        
-    return game    
+    all_games = get_stitched_games()
+    for game in all_games:
+        if game['id'] == game_id:
+            return game
+    raise HTTPException(status_code=404, detail="Game not found")
 
-@app.post("/api/admin/games/{game_id}/toggle-publish")
-def toggle_publish(game_id: str):
-    """Parent endpoint: Toggles the publish state of a game."""
-    conn = sqlite3.connect(DB_FILE)
-    cursor = conn.cursor()
-    
-    # Get current state
-    cursor.execute("SELECT is_published FROM games WHERE id = ?", (game_id,))
-    row = cursor.fetchone()
-    
-    if not row:
-        conn.close()
-        raise HTTPException(status_code=404, detail="Game not found")
-        
-    new_state = 0 if row[0] == 1 else 1
-    
-    cursor.execute("UPDATE games SET is_published = ? WHERE id = ?", (new_state, game_id))
-    conn.commit()
-    conn.close()
-    
-    return {"id": game_id, "is_published": bool(new_state)}
-
-# We will mount static files here later once we build the frontend
-
-# Add this at the very bottom of main.py
+# --- Static File Routing ---
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/")
 def serve_kid_app():
-    """Serves the main Numera Kid Dashboard."""
     return FileResponse("static/index.html")
 
 @app.get("/admin")
 def serve_admin_app():
-    """Serves the Parent Portal."""
     return FileResponse("static/admin.html")
