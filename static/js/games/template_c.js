@@ -50,6 +50,9 @@ const TemplateC = {
                 : possibleReceivers[Math.floor(Math.random() * possibleReceivers.length)];
 
             slot.innerHTML = activePair.idle;
+            if (activePair.idle && activePair.idle.length > 2) {
+                slot.classList.add('text-slot');
+            }
             slot.dataset.filled = "false";
             slot.dataset.satisfied = activePair.satisfied;
             slot.dataset.required = activePair.item; 

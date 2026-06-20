@@ -143,3 +143,21 @@ def test_template_e_js_and_app_js():
         template_e_content = f.read()
     assert "toUpperCase()" in template_e_content
     assert "targetFirstLetter" in template_e_content
+
+def test_new_game_emoji_match():
+    """Test details of the newly added emoji_match Litera game (Template C with text slots)."""
+    response = client.get("/api/games/emoji_match")
+    assert response.status_code == 200
+    game = response.json()
+    
+    assert game["id"] == "emoji_match"
+    assert game["section"] == "litera"
+    assert game["template_type"] == "template_c"
+    assert "digital" in game["config"]
+    assert "receivers" in game["config"]["digital"]
+    
+    # Verify word length constraint: 3 to 5 letters for all receivers' idle words
+    for rec in game["config"]["digital"]["receivers"]:
+        assert len(rec["idle"]) >= 3
+        assert len(rec["idle"]) <= 5
+        assert rec["idle"] == rec["idle"].upper() # Word should be in uppercase

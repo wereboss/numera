@@ -263,5 +263,62 @@
         ]
       }
     }
+  },
+  {
+    "id": "emoji_match",
+    "title": "Word Drop",
+    "icon": "🎯",
+    "section": "litera",
+    "has_digital_mode": true,
+    "has_companion_mode": true,
+    "template_type": "template_c",
+    "config": {
+      "digital": {
+        "count_range": [3, 4],
+        "receiver_mode": "multiple",
+        "start_message": "Match the emojis to their names",
+        "success_message": "Awesome job! You matched all of them!",
+        "receivers": [
+          {"idle": "APPLE", "satisfied": "APPLE 🍎", "item": "🍎"},
+          {"idle": "PEAR", "satisfied": "PEAR 🍐", "item": "🍐"},
+          {"idle": "DOG", "satisfied": "DOG 🐶", "item": "🐶"},
+          {"idle": "CAT", "satisfied": "CAT 🐱", "item": "🐱"},
+          {"idle": "CAR", "satisfied": "CAR 🚙", "item": "🚙"},
+          {"idle": "DINO", "satisfied": "DINO 🦖", "item": "🦖"},
+          {"idle": "BALL", "satisfied": "BALL ⚽", "item": "⚽"},
+          {"idle": "FROG", "satisfied": "FROG 🐸", "item": "🐸"},
+          {"idle": "BIRD", "satisfied": "BIRD 🐦", "item": "🐦"},
+          {"idle": "FISH", "satisfied": "FISH 🐟", "item": "🐟"},
+          {"idle": "LION", "satisfied": "LION 🦁", "item": "🦁"},
+          {"idle": "BEAR", "satisfied": "BEAR 🐻", "item": "🐻"},
+          {"idle": "DUCK", "satisfied": "DUCK 🦆", "item": "🦆"},
+          {"idle": "TREE", "satisfied": "TREE 🌲", "item": "🌲"},
+          {"idle": "STAR", "satisfied": "STAR ⭐", "item": "⭐"},
+          {"idle": "MOON", "satisfied": "MOON 🌙", "item": "🌙"},
+          {"idle": "SUN", "satisfied": "SUN ☀️", "item": "☀️"},
+          {"idle": "BOOK", "satisfied": "BOOK 📖", "item": "📖"},
+          {"idle": "CAKE", "satisfied": "CAKE 🍰", "item": "🍰"},
+          {"idle": "MILK", "satisfied": "MILK 🥛", "item": "🥛"},
+          {"idle": "SHOE", "satisfied": "SHOE 👟", "item": "👟"},
+          {"idle": "PIG", "satisfied": "PIG 🐷", "item": "🐷"},
+          {"idle": "COW", "satisfied": "COW 🐮", "item": "🐮"},
+          {"idle": "FOX", "satisfied": "FOX 🦊", "item": "🦊"},
+          {"idle": "GOAT", "satisfied": "GOAT 🐐", "item": "🐐"},
+          {"idle": "KITE", "satisfied": "KITE 🪁", "item": "🪁"},
+          {"idle": "KEY", "satisfied": "KEY 🔑", "item": "🔑"},
+          {"idle": "BUS", "satisfied": "BUS 🚌", "item": "🚌"},
+          {"idle": "SHIP", "satisfied": "SHIP 🚢", "item": "🚢"},
+          {"idle": "TOY", "satisfied": "TOY 🧸", "item": "🧸"}
+        ]
+      },
+      "companion": {
+        "instructions": [
+          "Step 1: Write words like DOG, CAT, CAR on physical cups.",
+          "Step 2: Find matching toy models or draw them on small cards.",
+          "Step 3: Tell your child to drop each toy/drawing card into the matching word cup.",
+          "Step 4: Say the words out loud together as they drop them in."
+        ]
+      }
+    }
   }
 ]
