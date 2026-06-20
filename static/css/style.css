@@ -573,3 +573,163 @@ h1 {
     color: #2E7D32 !important;
     transform: scale(1.08);
 }
+
+/* --- Drag Spelling Game (Template F) --- */
+.spell-drag-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 80vh;
+    box-sizing: border-box;
+    padding: 20px;
+    gap: 40px;
+}
+
+.spell-drag-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.spell-emoji-card {
+    font-size: 8rem;
+    width: 220px;
+    height: 220px;
+    background: white;
+    border: 8px solid #FF9800;
+    border-radius: 35px;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    margin-bottom: 25px;
+    animation: wobble 2s infinite ease-in-out;
+}
+
+.spell-slots-row {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.spell-slot-box {
+    width: 70px;
+    height: 80px;
+    background: white;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: #333;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+    user-select: none;
+    transition: all 0.2s ease;
+}
+
+.spell-slot-box.empty {
+    border: 4px dashed #9E9E9E;
+    background: #fafafa;
+    color: transparent;
+}
+
+.spell-slot-box.revealed {
+    border: 4px solid #4CAF50;
+    background: #E8F5E9;
+    color: #2E7D32;
+}
+
+.spell-drag-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.spell-inventory {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    max-width: 450px;
+    justify-content: center;
+    align-content: center;
+    min-height: 220px;
+    background: #ffffff70;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: inset 0 5px 10px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.spell-letter-tile {
+    width: 75px;
+    height: 75px;
+    background: white;
+    border: 5px solid #2196F3;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #2196F3;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    transition: transform 0.1s;
+    user-select: none;
+    touch-action: none;
+    z-index: 20;
+}
+
+.spell-letter-tile.incorrect-tile {
+    background-color: #FFCDD2 !important;
+    border-color: #E53935 !important;
+    color: #B71C1C !important;
+}
+
+@media (max-width: 768px) {
+    .spell-drag-container {
+        flex-direction: column;
+        gap: 20px;
+        min-height: auto;
+        padding-top: 10px;
+    }
+    
+    .spell-emoji-card {
+        width: 150px;
+        height: 150px;
+        font-size: 5rem;
+        border-radius: 25px;
+        margin-bottom: 15px;
+    }
+    
+    .spell-slot-box {
+        width: 55px;
+        height: 65px;
+        font-size: 2rem;
+        border-radius: 14px;
+    }
+    
+    .spell-inventory {
+        min-height: 180px;
+        padding: 15px;
+    }
+    
+    .spell-letter-tile {
+        width: 60px;
+        height: 60px;
+        font-size: 2.2rem;
+        border-radius: 15px;
+        border-width: 4px;
+    }
+}

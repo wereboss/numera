@@ -161,3 +161,44 @@ def test_new_game_emoji_match():
         assert len(rec["idle"]) >= 3
         assert len(rec["idle"]) <= 5
         assert rec["idle"] == rec["idle"].upper() # Word should be in uppercase
+
+def test_new_game_drag_spell():
+    """Test details of the newly added drag_spell Litera game (Template F)."""
+    response = client.get("/api/games/drag_spell")
+    assert response.status_code == 200
+    game = response.json()
+    
+    assert game["id"] == "drag_spell"
+    assert game["section"] == "litera"
+    assert game["template_type"] == "template_f"
+    assert "digital" in game["config"]
+    assert "items" in game["config"]["digital"]
+    
+    # Verify word length constraint: 3 to 5 letters for all items
+    for item in game["config"]["digital"]["items"]:
+        assert len(item["word"]) >= 3
+        assert len(item["word"]) <= 5
+
+def test_template_f_js_and_app_js():
+    """Verify HTML script link and app.js routing for Template F."""
+    # 1. Verify index.html loads template_f.js
+    index_path = os.path.join("static", "index.html")
+    with open(index_path, "r", encoding="utf-8") as f:
+        index_content = f.read()
+    assert 'src="/static/js/games/template_f.js"' in index_content
+
+    # 2. Verify app.js routes template_f
+    app_js_path = os.path.join("static", "js", "app.js")
+    with open(app_js_path, "r", encoding="utf-8") as f:
+        app_js_content = f.read()
+    assert "template_f" in app_js_content
+    assert "TemplateF.init" in app_js_content
+
+    # 3. Verify template_f.js contains pre-population logic, collision logic, and dynamic missing tiles
+    template_f_path = os.path.join("static", "js", "games", "template_f.js")
+    assert os.path.exists(template_f_path)
+    with open(template_f_path, "r", encoding="utf-8") as f:
+        template_f_content = f.read()
+    assert "numRevealed" in template_f_content
+    assert "missingLetters" in template_f_content
+    assert "makeDraggable" in template_f_content

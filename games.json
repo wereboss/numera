@@ -320,5 +320,71 @@
         ]
       }
     }
+  },
+  {
+    "id": "drag_spell",
+    "title": "Spell Drag",
+    "icon": "🧩",
+    "section": "litera",
+    "has_digital_mode": true,
+    "has_companion_mode": true,
+    "template_type": "template_f",
+    "config": {
+      "digital": {
+        "rounds": 3,
+        "items": [
+          {"emoji": "🍎", "word": "Apple"},
+          {"emoji": "🍐", "word": "Pear"},
+          {"emoji": "🐶", "word": "Dog"},
+          {"emoji": "🐱", "word": "Cat"},
+          {"emoji": "🚙", "word": "Car"},
+          {"emoji": "🦖", "word": "Dino"},
+          {"emoji": "⚽", "word": "Ball"},
+          {"emoji": "🐸", "word": "Frog"},
+          {"emoji": "🐦", "word": "Bird"},
+          {"emoji": "🐟", "word": "Fish"},
+          {"emoji": "🦁", "word": "Lion"},
+          {"emoji": "🐻", "word": "Bear"},
+          {"emoji": "🦆", "word": "Duck"},
+          {"emoji": "🦀", "word": "Crab"},
+          {"emoji": "⛵", "word": "Boat"},
+          {"emoji": "🌲", "word": "Tree"},
+          {"emoji": "⭐", "word": "Star"},
+          {"emoji": "🌙", "word": "Moon"},
+          {"emoji": "☀️", "word": "Sun"},
+          {"emoji": "📖", "word": "Book"},
+          {"emoji": "🍰", "word": "Cake"},
+          {"emoji": "🥛", "word": "Milk"},
+          {"emoji": "👟", "word": "Shoe"},
+          {"emoji": "💍", "word": "Ring"},
+          {"emoji": "🌹", "word": "Rose"},
+          {"emoji": "🐷", "word": "Pig"},
+          {"emoji": "🐮", "word": "Cow"},
+          {"emoji": "🦊", "word": "Fox"},
+          {"emoji": "🐐", "word": "Goat"},
+          {"emoji": "🪁", "word": "Kite"},
+          {"emoji": "🔑", "word": "Key"},
+          {"emoji": "🏺", "word": "Vase"},
+          {"emoji": "⛺", "word": "Tent"},
+          {"emoji": "🚌", "word": "Bus"},
+          {"emoji": "🚢", "word": "Ship"},
+          {"emoji": "🐜", "word": "Ant"},
+          {"emoji": "🐝", "word": "Bee"},
+          {"emoji": "🦉", "word": "Owl"},
+          {"emoji": "🧸", "word": "Toy"},
+          {"emoji": "🎩", "word": "Hat"}
+        ],
+        "start_message": "Drag letters to spell the word!",
+        "success_message": "Awesome! You spelled all the words!"
+      },
+      "companion": {
+        "instructions": [
+          "Step 1: Write a word on paper, leaving 1 or 2 letter blanks (e.g., D _ G).",
+          "Step 2: Give your child magnetic letters for the blanks and some distractors.",
+          "Step 3: Ask them to drag/place the correct letters onto the blanks.",
+          "Step 4: Speak the letters and the full word together."
+        ]
+      }
+    }
   }
 ]
