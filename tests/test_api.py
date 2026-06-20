@@ -98,6 +98,7 @@ def test_new_game_word_match():
     assert game["template_type"] == "template_e"
     assert "digital" in game["config"]
     assert "items" in game["config"]["digital"]
+    assert game["config"]["digital"]["rounds"] == 3
     
     # Verify word length constraint: 3 to 5 letters for all items
     for item in game["config"]["digital"]["items"]:
@@ -112,6 +113,7 @@ def test_template_e_config():
     
     assert "template_e" in data["templates"]
     template_e = data["templates"]["template_e"]
+    assert template_e["digital"]["rounds"] == 3
     assert "distractors" in template_e["digital"]
     
     # Verify word length constraints for template_e distractors
