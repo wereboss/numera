@@ -180,20 +180,40 @@
         "count_range": [3, 4],
         "receiver_mode": "multiple",
         "receivers": [
-          {"idle": "🅰️", "satisfied": "🅰️🍎", "item": "🍎"},
-          {"idle": "🅱️", "satisfied": "🅱️🍌", "item": "🍌"},
-          {"idle": "🅲", "satisfied": "🅲🐱", "item": "🐱"},
-          {"idle": "🅳", "satisfied": "🅳🐶", "item": "🐶"}
+          {"idle": "A", "satisfied": "A🍎", "item": "🍎"},
+          {"idle": "B", "satisfied": "B🍌", "item": "🍌"},
+          {"idle": "C", "satisfied": "C🐱", "item": "🐱"},
+          {"idle": "D", "satisfied": "D🐶", "item": "🐶"},
+          {"idle": "E", "satisfied": "E🥚", "item": "🥚"},
+          {"idle": "F", "satisfied": "F🐟", "item": "🐟"},
+          {"idle": "G", "satisfied": "G🍇", "item": "🍇"},
+          {"idle": "H", "satisfied": "H🎩", "item": "🎩"},
+          {"idle": "I", "satisfied": "I🧊", "item": "🧊"},
+          {"idle": "J", "satisfied": "J🥤", "item": "🥤"},
+          {"idle": "K", "satisfied": "K🪁", "item": "🪁"},
+          {"idle": "L", "satisfied": "L🦁", "item": "🦁"},
+          {"idle": "M", "satisfied": "M🥛", "item": "🥛"},
+          {"idle": "N", "satisfied": "N🥜", "item": "🥜"},
+          {"idle": "O", "satisfied": "O🦉", "item": "🦉"},
+          {"idle": "P", "satisfied": "P🍐", "item": "🍐"},
+          {"idle": "R", "satisfied": "R🐇", "item": "🐇"},
+          {"idle": "S", "satisfied": "S⭐", "item": "⭐"},
+          {"idle": "T", "satisfied": "T⛺", "item": "⛺"},
+          {"idle": "U", "satisfied": "U☂️", "item": "☂️"},
+          {"idle": "V", "satisfied": "V🏺", "item": "🏺"},
+          {"idle": "W", "satisfied": "W⌚", "item": "⌚"},
+          {"idle": "Y", "satisfied": "Y🪀", "item": "🪀"},
+          {"idle": "Z", "satisfied": "Z🦓", "item": "🦓"}
         ],
         "start_message": "Match the emojis to their starting letters",
         "success_message": "Awesome! You matched the letters!"
       },
       "companion": {
         "instructions": [
-          "Step 1: Write letters A, B, C, D on physical paper cards.",
-          "Step 2: Find toys that start with these letters: Apple, Banana, Cat, Dog.",
-          "Step 3: Tell your child the letters are hungry for their matching toy.",
-          "Step 4: Help them place each toy on the correct letter card."
+          "Step 1: Write letters on physical paper cards.",
+          "Step 2: Find household items or toys that start with those letters (e.g., A for Apple, B for Banana).",
+          "Step 3: Tell your child the letter blocks are hungry for their matching item.",
+          "Step 4: Help them place each item on the correct letter card."
         ]
       }
     }

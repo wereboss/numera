@@ -298,6 +298,23 @@ h1 {
     background: #FFF9C4; transform: scale(1.1); animation: pop 0.3s ease;
 }
 
+.receiver-slot.letter-slot {
+    font-size: 4.5rem !important;
+    font-weight: 900;
+    border: 5px solid #2196F3;
+    color: #2196F3;
+    background: #E3F2FD;
+    border-radius: 25px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.receiver-slot.letter-slot.satisfied {
+    background-color: #FFF9C4 !important;
+    border-color: #FBC02D !important;
+    color: #F57F17 !important;
+    font-size: 3rem !important;
+}
+
 .draggable-item {
     font-size: 5rem; cursor: pointer; touch-action: none; z-index: 20;
     transition: transform 0.1s; width: 100px; height: 100px;

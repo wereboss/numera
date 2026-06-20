@@ -28,7 +28,8 @@ const TemplateC = {
         const topHalf = document.createElement('div');
         topHalf.className = 'split-top';
         
-        const possibleReceivers = this.state.config.digital.receivers;
+        const possibleReceivers = [...this.state.config.digital.receivers];
+        possibleReceivers.sort(() => Math.random() - 0.5);
         let requiredFoods = []; 
 
         // NEW: Check the mode (defaulting to multiple if not found)
@@ -44,14 +45,16 @@ const TemplateC = {
             const slot = document.createElement('div');
             slot.className = 'receiver-slot';
             
-            // Assign the pair based on the chosen mode
+            // Assign the pair based on the chosen mode (using index i for uniqueness in multiple mode)
             const activePair = (mode === "single") 
                 ? lockedReceiverPair 
-                : possibleReceivers[Math.floor(Math.random() * possibleReceivers.length)];
+                : possibleReceivers[i % possibleReceivers.length];
 
             slot.innerHTML = activePair.idle;
             if (activePair.idle && activePair.idle.length > 2) {
                 slot.classList.add('text-slot');
+            } else if (activePair.idle && activePair.idle.length === 1 && /^[A-Z]$/i.test(activePair.idle)) {
+                slot.classList.add('letter-slot');
             }
             slot.dataset.filled = "false";
             slot.dataset.satisfied = activePair.satisfied;
