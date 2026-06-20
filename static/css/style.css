@@ -400,3 +400,36 @@ h1 {
     z-index: 9999; /* Keeps it strictly on top */
     cursor: pointer;
 }
+
+/* --- Section Tabs UI --- */
+.section-tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 10px auto 25px auto;
+    max-width: 600px;
+}
+
+.section-tab {
+    padding: 15px 30px;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #555;
+    background: #ffffff90;
+    border: 4px solid transparent;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.section-tab:active {
+    transform: scale(0.95);
+}
+
+.section-tab.active {
+    background: #fff;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+    transform: scale(1.08);
+}

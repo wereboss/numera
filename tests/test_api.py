@@ -1,0 +1,88 @@
+import pytest
+import os
+import re
+from fastapi.testclient import TestClient
+from main import app
+
+client = TestClient(app)
+
+def test_api_config():
+    """Test that the /api/config endpoint returns the sections and templates."""
+    response = client.get("/api/config")
+    assert response.status_code == 200
+    data = response.json()
+    
+    assert "sections" in data
+    assert "templates" in data
+    
+    sections = data["sections"]
+    assert len(sections) >= 2
+    
+    section_ids = [s["id"] for s in sections]
+    assert "numera" in section_ids
+    assert "litera" in section_ids
+    
+    for s in sections:
+        assert "title" in s
+        assert "background_color" in s
+        assert "primary_color" in s
+
+def test_api_admin_games():
+    """Test that /api/admin/games returns all games stitched with section properties."""
+    response = client.get("/api/admin/games")
+    assert response.status_code == 200
+    games = response.json()
+    
+    assert len(games) > 0
+    for game in games:
+        assert "id" in game
+        assert "title" in game
+        assert "section" in game
+        assert game["section"] in ["numera", "litera"]
+
+def test_new_game_starting_letters():
+    """Test details of the newly added starting_letters Litera game."""
+    response = client.get("/api/games/starting_letters")
+    assert response.status_code == 200
+    game = response.json()
+    
+    assert game["id"] == "starting_letters"
+    assert game["section"] == "litera"
+    assert game["template_type"] == "template_c"
+    assert "digital" in game["config"]
+    assert "start_message" in game["config"]["digital"]
+    assert game["config"]["digital"]["start_message"] == "Match the emojis to their starting letters"
+
+def test_js_and_html_integrations():
+    """Verify that frontend assets contain the necessary integration points for Litera."""
+    # 1. Verify index.html contains the section-tabs container
+    index_path = os.path.join("static", "index.html")
+    assert os.path.exists(index_path)
+    with open(index_path, "r", encoding="utf-8") as f:
+        index_content = f.read()
+    assert 'id="section-tabs"' in index_content
+    assert 'id="app-title"' in index_content
+
+    # 2. Verify admin.html contains the admin-sections-container
+    admin_html_path = os.path.join("static", "admin.html")
+    assert os.path.exists(admin_html_path)
+    with open(admin_html_path, "r", encoding="utf-8") as f:
+        admin_content = f.read()
+    assert 'id="admin-sections-container"' in admin_content
+
+    # 3. Verify app.js contains the activeSection and sectionsList logic
+    app_js_path = os.path.join("static", "js", "app.js")
+    assert os.path.exists(app_js_path)
+    with open(app_js_path, "r", encoding="utf-8") as f:
+        app_js_content = f.read()
+    assert "activeSection" in app_js_content
+    assert "sectionsList" in app_js_content
+    assert "renderSectionTabs" in app_js_content
+    assert "applySectionStyle" in app_js_content
+
+    # 4. Verify template_c.js uses the configurable start_message
+    template_c_path = os.path.join("static", "js", "games", "template_c.js")
+    assert os.path.exists(template_c_path)
+    with open(template_c_path, "r", encoding="utf-8") as f:
+        template_c_content = f.read()
+    assert "start_message" in template_c_content

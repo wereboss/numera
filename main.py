@@ -46,6 +46,8 @@ def get_stitched_games():
     # Inject the dynamic DB state into the static JSON definitions
     for game in games:
         game['is_published'] = states.get(game['id'], False) # Default to false if never published
+        if 'section' not in game:
+            game['section'] = 'numera'
         
     return games
 

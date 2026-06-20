@@ -2,6 +2,8 @@ let currentGame = null;
 let masterConfig = null;
 let globalMode = 'digital'; // Default to screen play
 let cachedGames = []; // Store all published games for instant filtering
+let activeSection = null; // Dynamically set based on configuration
+let sectionsList = []; // Loaded from master config
 
 function enterFullscreen() {
     const elem = document.documentElement;
@@ -25,6 +27,14 @@ async function loadMasterConfig() {
     try {
         const res = await fetch('/api/config');
         masterConfig = await res.json();
+        sectionsList = masterConfig.sections || [
+            { id: 'numera', title: 'Numera 🎈', background_color: '#F0F8FF', primary_color: '#2196F3' }
+        ];
+        if (!activeSection && sectionsList.length > 0) {
+            activeSection = sectionsList[0].id;
+        }
+        renderSectionTabs();
+        applySectionStyle();
     } catch (error) {
         console.error("Failed to load master config:", error);
     }
@@ -41,14 +51,59 @@ async function loadGames() {
     }
 }
 
-// 3. Render the grid based on the active global mode
+// 3. Dynamic Section Navigation rendering
+function renderSectionTabs() {
+    const tabsContainer = document.getElementById('section-tabs');
+    if (!tabsContainer) return;
+    tabsContainer.innerHTML = '';
+    
+    sectionsList.forEach(sec => {
+        const btn = document.createElement('button');
+        btn.className = 'section-tab';
+        if (sec.id === activeSection) {
+            btn.classList.add('active');
+            btn.style.color = sec.primary_color;
+            btn.style.borderColor = sec.primary_color;
+        } else {
+            btn.style.color = '#555';
+        }
+        btn.innerText = sec.title;
+        btn.onclick = () => setSection(sec.id);
+        tabsContainer.appendChild(btn);
+    });
+}
+
+function applySectionStyle() {
+    const secConfig = sectionsList.find(s => s.id === activeSection);
+    if (!secConfig) return;
+    
+    // Apply body background color
+    document.body.style.backgroundColor = secConfig.background_color;
+    
+    // Apply dynamic title text
+    const titleEl = document.getElementById('app-title');
+    if (titleEl) {
+        titleEl.innerText = secConfig.title;
+    }
+}
+
+function setSection(sectionId) {
+    activeSection = sectionId;
+    renderSectionTabs();
+    applySectionStyle();
+    renderGrid();
+}
+
+// 4. Render the grid based on the active global mode and active section
 function renderGrid() {
     const grid = document.getElementById('game-grid');
     grid.innerHTML = '';
 
-    // Filter games that support the current global mode
+    // Filter games that support the current global mode and active section
     const visibleGames = cachedGames.filter(game => {
-        return globalMode === 'digital' ? game.has_digital_mode : game.has_companion_mode;
+        const matchesMode = globalMode === 'digital' ? game.has_digital_mode : game.has_companion_mode;
+        const matchesSection = game.section === activeSection;
+        return matchesMode && matchesSection;
     });
 
     if (visibleGames.length === 0) {
@@ -71,7 +126,7 @@ function renderGrid() {
     });
 }
 
-// 4. Handle the Toggle Switch
+// 5. Handle the Toggle Switch
 function setMode(mode) {
     globalMode = mode;
     
@@ -84,7 +139,7 @@ function setMode(mode) {
     renderGrid();
 }
 
-// 5. Direct Launch Logic
+// 6. Direct Launch Logic
 async function launchGame(gameId) {
     const res = await fetch(`/api/games/${gameId}`);
     const gameData = await res.json();
@@ -98,13 +153,23 @@ async function launchGame(gameId) {
 
     currentGame = { ...gameData, config: mergedConfig };
     
-    document.getElementById('active-game-container').style.display = 'flex';
+    const activeGameContainer = document.getElementById('active-game-container');
+    activeGameContainer.style.display = 'flex';
+    
+    // Apply background color of active section to containers
+    const secConfig = sectionsList.find(s => s.id === activeSection);
+    if (secConfig) {
+        activeGameContainer.style.backgroundColor = secConfig.background_color;
+        const gameCanvas = document.getElementById('game-canvas');
+        if (gameCanvas) {
+            gameCanvas.style.backgroundColor = secConfig.background_color;
+        }
+    }
     
     // Unlock Speech Synthesis
     window.speechSynthesis.speak(new SpeechSynthesisUtterance(''));
 
-// Route dynamically based on the template
-// Route dynamically based on the template
+    // Route dynamically based on the template
     if (currentGame.template_type === 'template_a') {
         TemplateA.init('game-canvas', globalMode, currentGame.config);
     } else if (currentGame.template_type === 'template_b') {

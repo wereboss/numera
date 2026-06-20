@@ -3,6 +3,7 @@
     "id": "put_in_the_box",
     "title": "Put In The Box",
     "icon": "📦",
+    "section": "numera",
     "has_digital_mode": true,
     "has_companion_mode": true,
     "template_type": "template_a",
@@ -17,6 +18,7 @@
     "id": "dice_and_do",
     "title": "Dice & Do",
     "icon": "🎲",
+    "section": "numera",
     "has_digital_mode": true,
     "has_companion_mode": true,
     "template_type": "template_b",
@@ -26,6 +28,7 @@
     "id": "feed_the_animals",
     "title": "Feed the Animals",
     "icon": "🐱",
+    "section": "numera",
     "has_digital_mode": true,
     "has_companion_mode": true,
     "template_type": "template_c",
@@ -36,10 +39,11 @@
       }
     } 
   },
-   {
+  {
     "id": "arrange_dining",
     "title": "Arrange Dining Table",
     "icon": "🍜",
+    "section": "numera",
     "has_digital_mode": true,
     "has_companion_mode": true,
     "template_type": "template_c",
@@ -55,10 +59,11 @@
       }
     } 
   }, 
-    {
+  {
     "id": "park_cars",
     "title": "Park The Cars",
     "icon": "🚙",
+    "section": "numera",
     "has_digital_mode": true,
     "has_companion_mode": true,
     "template_type": "template_a",
@@ -76,6 +81,7 @@
     "id": "animal_sorter",
     "title": "Send Animal Home",
     "icon": "🌴",
+    "section": "numera",
     "has_digital_mode": true,
     "has_companion_mode": true,
     "template_type": "template_d",
@@ -85,6 +91,7 @@
     "id": "color_sorter",
     "title": "Colour Buckets",
     "icon": "☀️",
+    "section": "numera",
     "has_digital_mode": true,
     "has_companion_mode": true,
     "template_type": "template_d",
@@ -156,7 +163,37 @@
             "instruction": "Put the white things in the White Bucket!",
             "items": ["🥛", "🐇", "🐑", "👻", "☁️","⛄","🦷"]
           }
-
+        ]
+      }
+    }
+  },
+  {
+    "id": "starting_letters",
+    "title": "Starting Letters",
+    "icon": "🔤",
+    "section": "litera",
+    "has_digital_mode": true,
+    "has_companion_mode": true,
+    "template_type": "template_c",
+    "config": {
+      "digital": {
+        "count_range": [3, 4],
+        "receiver_mode": "multiple",
+        "receivers": [
+          {"idle": "🅰️", "satisfied": "🅰️🍎", "item": "🍎"},
+          {"idle": "🅱️", "satisfied": "🅱️🍌", "item": "🍌"},
+          {"idle": "🅲", "satisfied": "🅲🐱", "item": "🐱"},
+          {"idle": "🅳", "satisfied": "🅳🐶", "item": "🐶"}
+        ],
+        "start_message": "Match the emojis to their starting letters",
+        "success_message": "Awesome! You matched the letters!"
+      },
+      "companion": {
+        "instructions": [
+          "Step 1: Write letters A, B, C, D on physical paper cards.",
+          "Step 2: Find toys that start with these letters: Apple, Banana, Cat, Dog.",
+          "Step 3: Tell your child the letters are hungry for their matching toy.",
+          "Step 4: Help them place each toy on the correct letter card."
         ]
       }
     }

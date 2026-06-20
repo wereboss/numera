@@ -1,4 +1,18 @@
 {
+  "sections": [
+    {
+      "id": "numera",
+      "title": "Numera 🎈",
+      "background_color": "#F0F8FF",
+      "primary_color": "#2196F3"
+    },
+    {
+      "id": "litera",
+      "title": "Litera 🔤",
+      "background_color": "#E8F5E9",
+      "primary_color": "#4CAF50"
+    }
+  ],
   "templates": {
     "template_a": {
       "digital": {

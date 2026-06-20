@@ -81,7 +81,8 @@ const TemplateC = {
         wrap.appendChild(bottomHalf);
         container.appendChild(wrap);
         
-        window.speechSynthesis.speak(new SpeechSynthesisUtterance("Who gets what?"));
+        const msg = this.state.config.digital.start_message || "Who gets what?";
+        window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg));
     },
 
     makeDraggable: function(el, receivers) {
