@@ -3,6 +3,23 @@ let masterConfig = null;
 let globalMode = 'digital'; // Default to screen play
 let cachedGames = []; // Store all published games for instant filtering
 
+function enterFullscreen() {
+    const elem = document.documentElement;
+    
+    // Attempt to lock the browser into fullscreen
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen().catch(err => console.log("Fullscreen blocked by browser"));
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+        elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+        elem.msRequestFullscreen();
+    }
+    
+    // Hide the splash gate and unlock audio
+    document.getElementById('fullscreen-gate').style.display = 'none';
+    window.speechSynthesis.speak(new SpeechSynthesisUtterance(''));
+}
+
 // 1. Fetch the master config
 async function loadMasterConfig() {
     try {
@@ -42,8 +59,14 @@ function renderGrid() {
     visibleGames.forEach(game => {
         const el = document.createElement('div');
         el.className = 'card';
-        el.innerHTML = `<h2>${game.title}</h2>`;
-        el.onclick = () => launchGame(game.id); // Direct launch!
+        
+        // Render the new emoji icon right above the title
+        el.innerHTML = `
+            <div class="game-icon">${game.icon}</div>
+            <h2>${game.title}</h2>
+        `;
+        
+        el.onclick = () => launchGame(game.id); 
         grid.appendChild(el);
     });
 }

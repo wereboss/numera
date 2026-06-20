@@ -2,7 +2,7 @@
   {
     "id": "put_in_the_box",
     "title": "Put In The Box",
-    "icon": "box.svg",
+    "icon": "📦",
     "has_digital_mode": true,
     "has_companion_mode": true,
     "template_type": "template_a",
@@ -16,16 +16,16 @@
   {
     "id": "dice_and_do",
     "title": "Dice & Do",
-    "icon": "dice.svg",
+    "icon": "🎲",
     "has_digital_mode": true,
     "has_companion_mode": true,
     "template_type": "template_b",
     "config": {}
   },
   {
-    "id": "feed_the_cats",
-    "title": "Feed the Cats",
-    "icon": "cat.svg",
+    "id": "feed_the_animals",
+    "title": "Feed the Animals",
+    "icon": "🐱",
     "has_digital_mode": true,
     "has_companion_mode": true,
     "template_type": "template_c",
@@ -36,10 +36,46 @@
       }
     } 
   },
+   {
+    "id": "arrange_dining",
+    "title": "Arrange Dining Table",
+    "icon": "🍜",
+    "has_digital_mode": true,
+    "has_companion_mode": true,
+    "template_type": "template_c",
+    "config": {
+      "digital":{
+        "count_range": [3, 10],
+        "receiver_mode": "multiple",
+        "receivers": [
+          {"idle": "🍛", "satisfied": "🍜", "item": "🥢"},
+          {"idle": "🫓", "satisfied": "🍽️", "item": "🍴"},
+          {"idle": "🥣", "satisfied": "🍲", "item": "🥄"}
+        ]
+      }
+    } 
+  }, 
+    {
+    "id": "park_cars",
+    "title": "Park The Cars",
+    "icon": "🚙",
+    "has_digital_mode": true,
+    "has_companion_mode": true,
+    "template_type": "template_a",
+    "config": {
+      "digital":{
+        "item_emoji": "🚙",
+        "target_emoji": "🏠",
+        "count_range": [2, 8],
+        "choice_count": 4,
+        "success_message": "Yay! You parked all the cars !!"
+      }
+    } 
+  },
   {
     "id": "animal_sorter",
     "title": "Send Animal Home",
-    "icon": "bear.svg",
+    "icon": "🌴",
     "has_digital_mode": true,
     "has_companion_mode": true,
     "template_type": "template_d",
@@ -48,7 +84,7 @@
   {
     "id": "color_sorter",
     "title": "Colour Buckets",
-    "icon": "bear.svg",
+    "icon": "☀️",
     "has_digital_mode": true,
     "has_companion_mode": true,
     "template_type": "template_d",
