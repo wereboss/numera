@@ -14,7 +14,7 @@
 import os
 uvicorn_path = os.path.join("venv", "bin", "uvicorn")
 host = os.environ.get("NUMERA_HOST", "0.0.0.0")
-port = os.environ.get("NUMERA_PORT", "8000")
+port = os.environ.get("NUMERA_PORT", "9025")
 print(f"Starting Numera on http://{host}:{port}")
 os.execvp(uvicorn_path, [uvicorn_path, "main:app", "--host", host, "--port", port])
 '
