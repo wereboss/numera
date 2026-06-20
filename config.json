@@ -108,6 +108,58 @@
           "Step 4: Ask them to sort the pile until the floor is clean!"
         ]
       }
+    },
+    "template_e": {
+      "digital": {
+        "rounds": 4,
+        "items": [
+          {"emoji": "🍎", "word": "Apple"},
+          {"emoji": "🍐", "word": "Pear"},
+          {"emoji": "🐶", "word": "Dog"},
+          {"emoji": "🐱", "word": "Cat"},
+          {"emoji": "🚙", "word": "Car"},
+          {"emoji": "🦖", "word": "Dino"},
+          {"emoji": "⚽", "word": "Ball"},
+          {"emoji": "🐸", "word": "Frog"}
+        ],
+        "distractors": [
+          "Ant", "Ape",
+          "Bear", "Book", "Bed", "Bag", "Bird",
+          "Cup", "Cake", "Cow", "Cone",
+          "Doll", "Duck", "Drum",
+          "Egg", "Elk",
+          "Fish", "Fox", "Fan",
+          "Goat", "Gum",
+          "Hat", "Hen", "Home", "Harp",
+          "Ice", "Ink",
+          "Jam", "Jeep", "Jug",
+          "Kite", "Key", "Kiwi",
+          "Lion", "Leaf", "Lime",
+          "Milk", "Moon", "Mug",
+          "Nut", "Nest", "Nail",
+          "Owl", "Oat",
+          "Pen", "Pig", "Plum", "Pony",
+          "Quad",
+          "Ring", "Rose", "Rain",
+          "Sun", "Star", "Shoe", "Ship", "Soup",
+          "Tree", "Tent", "Toy",
+          "Unit",
+          "Van", "Vase", "Vine",
+          "Wind", "Worm", "Wave", "Wolf",
+          "Xray",
+          "Yarn", "Yak", "YoYo",
+          "Zebra", "Zoo"
+        ],
+        "start_message": "What is the name of this?",
+        "success_message": "Fantastic! You matched all the words!"
+      },
+      "companion": {
+        "instructions": [
+          "Step 1: Point to an object.",
+          "Step 2: Ask the child to say the word.",
+          "Step 3: Point to the written word and say it together."
+        ]
+      }
     }
   }
 }

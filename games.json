@@ -197,5 +197,39 @@
         ]
       }
     }
+  },
+  {
+    "id": "word_match",
+    "title": "Word Matching",
+    "icon": "🖼️",
+    "section": "litera",
+    "has_digital_mode": true,
+    "has_companion_mode": true,
+    "template_type": "template_e",
+    "config": {
+      "digital": {
+        "rounds": 4,
+        "items": [
+          {"emoji": "🍎", "word": "Apple"},
+          {"emoji": "🍐", "word": "Pear"},
+          {"emoji": "🐶", "word": "Dog"},
+          {"emoji": "🐱", "word": "Cat"},
+          {"emoji": "🚙", "word": "Car"},
+          {"emoji": "🦖", "word": "Dino"},
+          {"emoji": "⚽", "word": "Ball"},
+          {"emoji": "🐸", "word": "Frog"}
+        ],
+        "start_message": "What is the name of this?",
+        "success_message": "Fantastic! You matched all the words!"
+      },
+      "companion": {
+        "instructions": [
+          "Step 1: Find 4 household toys (e.g., a ball, a car, a toy dog, a book).",
+          "Step 2: Write the names of the toys on paper cards.",
+          "Step 3: Show your child one toy at a time.",
+          "Step 4: Ask them to find the paper card that names the toy."
+        ]
+      }
+    }
   }
 ]

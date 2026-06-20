@@ -86,3 +86,58 @@ def test_js_and_html_integrations():
     with open(template_c_path, "r", encoding="utf-8") as f:
         template_c_content = f.read()
     assert "start_message" in template_c_content
+
+def test_new_game_word_match():
+    """Test details of the newly added word_match Litera game (Template E)."""
+    response = client.get("/api/games/word_match")
+    assert response.status_code == 200
+    game = response.json()
+    
+    assert game["id"] == "word_match"
+    assert game["section"] == "litera"
+    assert game["template_type"] == "template_e"
+    assert "digital" in game["config"]
+    assert "items" in game["config"]["digital"]
+    
+    # Verify word length constraint: 3 to 5 letters for all items
+    for item in game["config"]["digital"]["items"]:
+        assert len(item["word"]) >= 3
+        assert len(item["word"]) <= 5
+
+def test_template_e_config():
+    """Test defaults for template_e inside master configuration."""
+    response = client.get("/api/config")
+    assert response.status_code == 200
+    data = response.json()
+    
+    assert "template_e" in data["templates"]
+    template_e = data["templates"]["template_e"]
+    assert "distractors" in template_e["digital"]
+    
+    # Verify word length constraints for template_e distractors
+    for d in template_e["digital"]["distractors"]:
+        assert len(d) >= 3
+        assert len(d) <= 5
+
+def test_template_e_js_and_app_js():
+    """Verify HTML script link and app.js routing for Template E."""
+    # 1. Verify index.html loads template_e.js
+    index_path = os.path.join("static", "index.html")
+    with open(index_path, "r", encoding="utf-8") as f:
+        index_content = f.read()
+    assert 'src="/static/js/games/template_e.js"' in index_content
+
+    # 2. Verify app.js routes template_e
+    app_js_path = os.path.join("static", "js", "app.js")
+    with open(app_js_path, "r", encoding="utf-8") as f:
+        app_js_content = f.read()
+    assert "template_e" in app_js_content
+    assert "TemplateE.init" in app_js_content
+
+    # 3. Verify template_e.js contains uppercase logic and smart first letter distractor matching
+    template_e_path = os.path.join("static", "js", "games", "template_e.js")
+    assert os.path.exists(template_e_path)
+    with open(template_e_path, "r", encoding="utf-8") as f:
+        template_e_content = f.read()
+    assert "toUpperCase()" in template_e_content
+    assert "targetFirstLetter" in template_e_content
