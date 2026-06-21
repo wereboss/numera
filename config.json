@@ -278,6 +278,7 @@
     "template_i": {
       "digital": {
         "rounds": 3,
+        "pair_count_range": [3, 5],
         "items": [
           {"emoji": "🍎", "word": "Apple"},
           {"emoji": "🍌", "word": "Banana"},

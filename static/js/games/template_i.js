@@ -36,7 +36,12 @@ const TemplateI = {
         this.state.connections = [];
         this.state.activeDrag = null;
         this.state.connectedCount = 0;
-        this.state.totalPairs = 3;
+
+        // Determine dynamic number of pairs (rows) based on config
+        const range = this.state.config.digital.pair_count_range || [3, 5];
+        const min = range[0];
+        const max = range[1];
+        this.state.totalPairs = Math.floor(Math.random() * (max - min + 1)) + min;
 
         // Clean up previous event listener
         if (this.state.resizeHandler) {
@@ -48,8 +53,8 @@ const TemplateI = {
         let pairs = [];
 
         if (type === "counts") {
-            // "Match the Counts" logic
-            const availableCounts = [1, 2, 3, 4];
+            // "Match the Counts" logic (expanded up to 6 counts to support up to 5 pairs)
+            const availableCounts = [1, 2, 3, 4, 5, 6];
             availableCounts.sort(() => Math.random() - 0.5);
             const selectedCounts = availableCounts.slice(0, this.state.totalPairs);
 
@@ -89,8 +94,26 @@ const TemplateI = {
 
         this.state.roundPairs = pairs;
 
-        // Shuffle right column independently
-        const shuffledRight = [...pairs].sort(() => Math.random() - 0.5);
+        // Shuffle right column independently while ensuring <= 1 horizontal line
+        let shuffledRight = [...pairs];
+        let attempts = 0;
+        while (attempts < 100) {
+            shuffledRight.sort(() => Math.random() - 0.5);
+
+            // Count horizontal alignments
+            let horizontalCount = 0;
+            for (let i = 0; i < pairs.length; i++) {
+                if (pairs[i].id === shuffledRight[i].id) {
+                    horizontalCount++;
+                }
+            }
+
+            // Enforce at most 1 horizontal connector line
+            if (horizontalCount <= 1) {
+                break;
+            }
+            attempts++;
+        }
 
         // 2. Build DOM structures
         const wrap = document.createElement('div');
