@@ -19,6 +19,50 @@ It bridges the gap between screen time and physical play by offering a unique **
 
 ---
 
+## 📐 System Architecture & Data Flow
+
+```mermaid
+flowchart TD
+    subgraph FE [Frontend SPA]
+        KidUI["Kid Dashboard (index.html & app.js)"]
+        AdminUI["Parent Portal (admin.html & admin.js)"]
+        Templates["Layout Engines (template_a.js - template_i.js)"]
+    end
+
+    subgraph BE [Backend FastAPI & Storage]
+        API["FastAPI Server (main.py)"]
+        DB[("SQLite DB: numera.db (Publish states)")]
+        GamesConfig[("games.json (Static game configs)")]
+        GlobalConfig[("config.json (Master default settings)")]
+    end
+
+    %% Kid Flow
+    KidUI -->|1. Fetch Master Config| API
+    KidUI -->|2. Fetch Published Games| API
+    KidUI -.->|Render Layout via| Templates
+
+    %% Admin Flow
+    AdminUI -->|Fetch All Games| API
+    AdminUI -->|Toggle Publish State| API
+
+    %% Data Stitching
+    API <-->|Query/Update publish state| DB
+    API --->|Stitch definitions with state| GamesConfig
+    API --->|Retrieve defaults| GlobalConfig
+
+    style FE fill:#f9f9f9,stroke:#333,stroke-width:1px
+    style BE fill:#f4f4f4,stroke:#333,stroke-width:1px
+    classDef frontend fill:#E8F5E9,stroke:#4CAF50,stroke-width:2px
+    classDef backend fill:#E3F2FD,stroke:#2196F3,stroke-width:2px
+    classDef storage fill:#FFF3E0,stroke:#FF9800,stroke-width:2px
+    
+    class KidUI,AdminUI,Templates frontend
+    class API backend
+    class DB,GamesConfig,GlobalConfig storage
+```
+
+---
+
 ## 🧩 Game Templates
 
 To keep development flexible and scalable, the application utilizes structured frontend layout engines (templates) loaded dynamically:
