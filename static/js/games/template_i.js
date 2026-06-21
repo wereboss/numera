@@ -200,13 +200,6 @@ const TemplateI = {
                 currentY: e.clientY
             };
             dot.classList.add('active');
-
-            // Speak item prompt
-            if (dot.dataset.speechValue) {
-                const utterance = new SpeechSynthesisUtterance(dot.dataset.speechValue);
-                utterance.pitch = 1.3;
-                window.speechSynthesis.speak(utterance);
-            }
         });
 
         dot.addEventListener('pointermove', (e) => {
