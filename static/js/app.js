@@ -195,6 +195,12 @@ function exitGame() {
     document.getElementById('active-game-container').style.display = 'none';
     document.getElementById('game-canvas').innerHTML = ''; 
     window.speechSynthesis.cancel(); 
+    
+    // Clear Template H speech timeouts if active
+    if (typeof TemplateH !== 'undefined' && TemplateH.state.speechTimeout) {
+        clearTimeout(TemplateH.state.speechTimeout);
+    }
+    
     currentGame = null; 
 }
 

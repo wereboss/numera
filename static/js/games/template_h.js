@@ -5,7 +5,8 @@ const TemplateH = {
         roundItems: [],
         targetItem: null,
         choices: [],
-        config: null
+        config: null,
+        speechTimeout: null
     },
 
     init: function(containerId, mode, config) {
@@ -47,7 +48,7 @@ const TemplateH = {
 
         const prompt = document.createElement('div');
         prompt.className = 'sound-prompt';
-        prompt.innerText = `${this.state.config.digital.start_message || "SHOW ME THE "}${this.state.targetItem.word.toUpperCase()}!`;
+        prompt.innerHTML = `${this.state.config.digital.start_message || "SHOW ME THE "}<span class="highlight-word">${this.state.targetItem.word.toUpperCase()}</span>!`;
         wrap.appendChild(prompt);
 
         const replayBtn = document.createElement('button');
@@ -78,11 +79,24 @@ const TemplateH = {
 
     speakPrompt: function() {
         if (!this.state.targetItem) return;
+        
         window.speechSynthesis.cancel(); // Cancel any ongoing speech
-        const phrase = `${this.state.config.digital.start_message || "Show me the "}${this.state.targetItem.word}`;
-        const utterance = new SpeechSynthesisUtterance(phrase);
-        utterance.pitch = 1.3;
-        window.speechSynthesis.speak(utterance);
+        if (this.state.speechTimeout) {
+            clearTimeout(this.state.speechTimeout);
+        }
+
+        // 1. Speak target word first
+        const wordUtterance = new SpeechSynthesisUtterance(this.state.targetItem.word);
+        wordUtterance.pitch = 1.3;
+        window.speechSynthesis.speak(wordUtterance);
+
+        // 2. Wait 1 second and speak target instruction phrase
+        this.state.speechTimeout = setTimeout(() => {
+            const phrase = `${this.state.config.digital.start_message || "Show me the "}${this.state.targetItem.word}`;
+            const utterance = new SpeechSynthesisUtterance(phrase);
+            utterance.pitch = 1.3;
+            window.speechSynthesis.speak(utterance);
+        }, 1000);
     },
 
     handleCardTap: function(cardEl, choice, containerId) {
@@ -93,8 +107,12 @@ const TemplateH = {
             grid.dataset.locked = "true";
             cardEl.classList.add('correct-card');
 
-            // Speak confirmation
+            // Speak confirmation and clear timers
             window.speechSynthesis.cancel();
+            if (this.state.speechTimeout) {
+                clearTimeout(this.state.speechTimeout);
+            }
+
             const feedback = new SpeechSynthesisUtterance(`Yes! ${choice.word}!`);
             feedback.pitch = 1.3;
             window.speechSynthesis.speak(feedback);
@@ -112,6 +130,10 @@ const TemplateH = {
             cardEl.classList.add('incorrect-card');
 
             window.speechSynthesis.cancel();
+            if (this.state.speechTimeout) {
+                clearTimeout(this.state.speechTimeout);
+            }
+
             const oops = new SpeechSynthesisUtterance("Try again!");
             oops.pitch = 1.2;
             window.speechSynthesis.speak(oops);
