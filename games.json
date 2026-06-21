@@ -426,5 +426,45 @@
     "has_companion_mode": true,
     "template_type": "template_h",
     "config": {}
+  },
+  {
+    "id": "match_counts",
+    "title": "Match the Counts",
+    "icon": "🔢",
+    "section": "numera",
+    "has_digital_mode": true,
+    "has_companion_mode": true,
+    "template_type": "template_i",
+    "config": {
+      "digital": {
+        "game_type": "counts",
+        "start_message": "Connect the pictures to their numbers!",
+        "success_message": "Great job counting!"
+      },
+      "companion": {
+        "instructions": [
+          "Step 1: Put groups of toys on the left (e.g., 2 blocks, 3 cars).",
+          "Step 2: Place written numbers 1, 2, 3 on the right.",
+          "Step 3: Ask your child to match them by drawing lines or laying strings.",
+          "Step 4: Count the items together."
+        ]
+      }
+    }
+  },
+  {
+    "id": "match_names",
+    "title": "Match the Names",
+    "icon": "📝",
+    "section": "litera",
+    "has_digital_mode": true,
+    "has_companion_mode": true,
+    "template_type": "template_i",
+    "config": {
+      "digital": {
+        "game_type": "names",
+        "start_message": "Connect the words to their pictures!",
+        "success_message": "Awesome! You matched all the names!"
+      }
+    }
   }
 ]

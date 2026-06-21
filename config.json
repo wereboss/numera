@@ -274,6 +274,35 @@
           "Step 4: Celebrate their success together!"
         ]
       }
+    },
+    "template_i": {
+      "digital": {
+        "rounds": 3,
+        "items": [
+          {"emoji": "🍎", "word": "Apple"},
+          {"emoji": "🍌", "word": "Banana"},
+          {"emoji": "🐶", "word": "Dog"},
+          {"emoji": "🐱", "word": "Cat"},
+          {"emoji": "🚗", "word": "Car"},
+          {"emoji": "🦖", "word": "Dino"},
+          {"emoji": "⚽", "word": "Ball"},
+          {"emoji": "🐸", "word": "Frog"},
+          {"emoji": "🧸", "word": "Toy"},
+          {"emoji": "🔑", "word": "Key"},
+          {"emoji": "👑", "word": "Crown"},
+          {"emoji": "🌟", "word": "Star"}
+        ],
+        "start_message": "Connect the matching items!",
+        "success_message": "Fabulous! You connected them all!"
+      },
+      "companion": {
+        "instructions": [
+          "Step 1: Write a list of words on the left side of a whiteboard and draw matching toys on the right side.",
+          "Step 2: Give your child a dry-erase marker.",
+          "Step 3: Ask them to draw a line connecting each word to its picture.",
+          "Step 4: Practice saying the words together."
+        ]
+      }
     }
   }
 }

@@ -186,6 +186,8 @@ async function launchGame(gameId) {
         TemplateG.init('game-canvas', globalMode, currentGame.config);
     } else if (currentGame.template_type === 'template_h') {
         TemplateH.init('game-canvas', globalMode, currentGame.config);
+    } else if (currentGame.template_type === 'template_i') {
+        TemplateI.init('game-canvas', globalMode, currentGame.config);
     } else {
         alert(`Template ${currentGame.template_type} is not built yet!`);
     }
@@ -199,6 +201,12 @@ function exitGame() {
     // Clear Template H speech timeouts if active
     if (typeof TemplateH !== 'undefined' && TemplateH.state.speechTimeout) {
         clearTimeout(TemplateH.state.speechTimeout);
+    }
+
+    // Clear Template I resize listener if active
+    if (typeof TemplateI !== 'undefined' && TemplateI.state.resizeHandler) {
+        window.removeEventListener('resize', TemplateI.state.resizeHandler);
+        TemplateI.state.resizeHandler = null;
     }
     
     currentGame = null; 

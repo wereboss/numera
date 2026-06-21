@@ -270,3 +270,47 @@ def test_template_h_js_and_app_js():
     assert "speakPrompt" in template_h_content
     assert "HEAR AGAIN" in template_h_content
     assert "handleCardTap" in template_h_content
+
+def test_new_games_line_match():
+    """Test details of the newly added match_counts and match_names games (Template I)."""
+    # 1. Match Counts
+    response = client.get("/api/games/match_counts")
+    assert response.status_code == 200
+    game = response.json()
+    assert game["id"] == "match_counts"
+    assert game["section"] == "numera"
+    assert game["template_type"] == "template_i"
+    assert game["config"]["digital"]["game_type"] == "counts"
+
+    # 2. Match Names
+    response = client.get("/api/games/match_names")
+    assert response.status_code == 200
+    game = response.json()
+    assert game["id"] == "match_names"
+    assert game["section"] == "litera"
+    assert game["template_type"] == "template_i"
+    assert game["config"]["digital"]["game_type"] == "names"
+
+def test_template_i_js_and_app_js():
+    """Verify HTML script link and app.js routing for Template I."""
+    # 1. Verify index.html loads template_i.js
+    index_path = os.path.join("static", "index.html")
+    with open(index_path, "r", encoding="utf-8") as f:
+        index_content = f.read()
+    assert 'src="/static/js/games/template_i.js"' in index_content
+
+    # 2. Verify app.js routes template_i
+    app_js_path = os.path.join("static", "js", "app.js")
+    with open(app_js_path, "r", encoding="utf-8") as f:
+        app_js_content = f.read()
+    assert "template_i" in app_js_content
+    assert "TemplateI.init" in app_js_content
+
+    # 3. Verify template_i.js contains drawLines, resizeCanvas, and bindDotEvents
+    template_i_path = os.path.join("static", "js", "games", "template_i.js")
+    assert os.path.exists(template_i_path)
+    with open(template_i_path, "r", encoding="utf-8") as f:
+        template_i_content = f.read()
+    assert "drawLines" in template_i_content
+    assert "resizeCanvas" in template_i_content
+    assert "bindDotEvents" in template_i_content
