@@ -750,3 +750,92 @@ h1 {
         border-width: 4px;
     }
 }
+
+/* --- Odd One Out Game (Template G) --- */
+.odd-game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 80vh;
+    box-sizing: border-box;
+    padding: 20px;
+    gap: 30px;
+}
+
+.odd-prompt {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #333;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.odd-choices-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 30px;
+    width: 100%;
+    max-width: 480px;
+    height: 360px;
+    margin: 0 auto;
+}
+
+.odd-choice-card {
+    font-size: 5.5rem;
+    background: white;
+    border: 6px solid #FF9800;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.odd-choice-card:active {
+    transform: scale(0.92);
+}
+
+.odd-choice-card.correct-card {
+    background-color: #E8F5E9 !important;
+    border-color: #4CAF50 !important;
+    transform: scale(1.08);
+    animation: pop 0.3s ease;
+}
+
+.odd-choice-card.incorrect-card {
+    background-color: #FFCDD2 !important;
+    border-color: #E53935 !important;
+    animation: wobble 0.4s ease;
+}
+
+@media (max-width: 768px) {
+    .odd-game-container {
+        gap: 15px;
+        min-height: auto;
+        padding-top: 10px;
+    }
+    
+    .odd-prompt {
+        font-size: 1.8rem;
+    }
+    
+    .odd-choices-grid {
+        height: 280px;
+        gap: 15px;
+        max-width: 360px;
+    }
+    
+    .odd-choice-card {
+        font-size: 4rem;
+        border-radius: 20px;
+        border-width: 4px;
+    }
+}

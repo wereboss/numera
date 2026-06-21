@@ -406,5 +406,15 @@
         ]
       }
     }
+  },
+  {
+    "id": "odd_one_out",
+    "title": "Odd One Out",
+    "icon": "🦄",
+    "section": "numera",
+    "has_digital_mode": true,
+    "has_companion_mode": true,
+    "template_type": "template_g",
+    "config": {}
   }
 ]

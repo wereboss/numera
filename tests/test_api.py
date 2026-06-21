@@ -202,3 +202,37 @@ def test_template_f_js_and_app_js():
     assert "numRevealed" in template_f_content
     assert "missingLetters" in template_f_content
     assert "makeDraggable" in template_f_content
+
+def test_new_game_odd_one_out():
+    """Test details of the newly added odd_one_out Numera game (Template G)."""
+    response = client.get("/api/games/odd_one_out")
+    assert response.status_code == 200
+    game = response.json()
+    
+    assert game["id"] == "odd_one_out"
+    assert game["section"] == "numera"
+    assert game["template_type"] == "template_g"
+
+def test_template_g_js_and_app_js():
+    """Verify HTML script link and app.js routing for Template G."""
+    # 1. Verify index.html loads template_g.js
+    index_path = os.path.join("static", "index.html")
+    with open(index_path, "r", encoding="utf-8") as f:
+        index_content = f.read()
+    assert 'src="/static/js/games/template_g.js"' in index_content
+
+    # 2. Verify app.js routes template_g
+    app_js_path = os.path.join("static", "js", "app.js")
+    with open(app_js_path, "r", encoding="utf-8") as f:
+        app_js_content = f.read()
+    assert "template_g" in app_js_content
+    assert "TemplateG.init" in app_js_content
+
+    # 3. Verify template_g.js contains mainCatKey, isOdd, and handleCardTap
+    template_g_path = os.path.join("static", "js", "games", "template_g.js")
+    assert os.path.exists(template_g_path)
+    with open(template_g_path, "r", encoding="utf-8") as f:
+        template_g_content = f.read()
+    assert "mainCatKey" in template_g_content
+    assert "isOdd" in template_g_content
+    assert "handleCardTap" in template_g_content

@@ -217,6 +217,27 @@
           "Step 4: Speak the letters and the full word together."
         ]
       }
+    },
+    "template_g": {
+      "digital": {
+        "rounds": 3,
+        "categories": {
+          "FRUITS": ["🍎", "🍌", "🍇", "🍓", "🍒", "🍍", "🍉"],
+          "ANIMALS": ["🦁", "🐯", "🐼", "🐨", "🐰", "🐶", "🐱", "🦊"],
+          "VEHICLES": ["🚗", "🚓", "🚑", "🚒", "🚌", "✈️", "🚢", "🚁"],
+          "TOYS": ["🧸", "🎈", "🪁", "🪀", "⚽", "🏆"],
+          "FOOD": ["🍕", "🍔", "🍟", "🍩", "🍦", "🍪"]
+        },
+        "start_message": "Find the one that is different!",
+        "success_message": "Super job! You found all the odd ones!"
+      },
+      "companion": {
+        "instructions": [
+          "Step 1: Place 3 similar items (e.g., 3 spoons) and 1 different item (e.g., 1 toy car) on the floor.",
+          "Step 2: Ask your child to point to or pick up the one that is different.",
+          "Step 3: Ask them why it is different, and cheer when they spot it!"
+        ]
+      }
     }
   }
 }
