@@ -32,6 +32,7 @@ To keep development flexible and scalable, the application utilizes structured f
 * **Template E (Word Match):** Shows a target emoji alongside a 2x2 grid of uppercase word blocks. Includes smart distractors matching the target first-letter for educational challenge.
 * **Template F (Spell Drag):** Drag-and-drop spelling. An emoji is displayed next to letters slots (revealing a dynamic number of letters as scaffolding). Toddlers drag missing letters from a grid. Includes wobbly red error animations and delayed snap-back.
 * **Template G (Odd One Out):** Displays a 2x2 grid of four large emoji blocks. Three belong to one category and one is the odd item. Correct taps animate and progress, incorrect taps trigger wobble and color change.
+* **Template H (Sound Match):** Auditory matching. Plays a phrase "Show me the [Word]!" automatically or when tapping a large speaker replay button. Toddlers tap the matching emoji from a 2x2 grid of large blocks.
 
 ---
 

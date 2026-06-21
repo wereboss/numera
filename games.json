@@ -416,5 +416,15 @@
     "has_companion_mode": true,
     "template_type": "template_g",
     "config": {}
+  },
+  {
+    "id": "sound_match",
+    "title": "Sound Match",
+    "icon": "🔊",
+    "section": "litera",
+    "has_digital_mode": true,
+    "has_companion_mode": true,
+    "template_type": "template_h",
+    "config": {}
   }
 ]

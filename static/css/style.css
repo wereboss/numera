@@ -839,3 +839,119 @@ h1 {
         border-width: 4px;
     }
 }
+
+/* --- Sound Match Game (Template H) --- */
+.sound-game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 80vh;
+    box-sizing: border-box;
+    padding: 20px;
+    gap: 25px;
+}
+
+.sound-prompt {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #333;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 1px;
+}
+
+.sound-replay-btn {
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    background: #9C27B0; /* Premium Purple */
+    border: none;
+    border-radius: 40px;
+    padding: 15px 35px;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(156, 39, 176, 0.25);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.sound-replay-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 4px 8px rgba(156, 39, 176, 0.25);
+}
+
+.sound-choices-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 30px;
+    width: 100%;
+    max-width: 480px;
+    height: 360px;
+    margin: 0 auto;
+}
+
+.sound-choice-card {
+    font-size: 5.5rem;
+    background: white;
+    border: 6px solid #2196F3; /* Bright friendly blue */
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+.sound-choice-card:active {
+    transform: scale(0.92);
+}
+
+.sound-choice-card.correct-card {
+    background-color: #E8F5E9 !important;
+    border-color: #4CAF50 !important;
+    transform: scale(1.08);
+    animation: pop 0.3s ease;
+}
+
+.sound-choice-card.incorrect-card {
+    background-color: #FFCDD2 !important;
+    border-color: #E53935 !important;
+    animation: wobble 0.4s ease;
+}
+
+@media (max-width: 768px) {
+    .sound-game-container {
+        gap: 15px;
+        min-height: auto;
+        padding-top: 10px;
+    }
+    
+    .sound-prompt {
+        font-size: 1.8rem;
+    }
+    
+    .sound-replay-btn {
+        font-size: 1.5rem;
+        padding: 10px 25px;
+    }
+    
+    .sound-choices-grid {
+        height: 280px;
+        gap: 15px;
+        max-width: 360px;
+    }
+    
+    .sound-choice-card {
+        font-size: 4rem;
+        border-radius: 20px;
+        border-width: 4px;
+    }
+}

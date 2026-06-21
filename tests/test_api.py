@@ -236,3 +236,37 @@ def test_template_g_js_and_app_js():
     assert "mainCatKey" in template_g_content
     assert "isOdd" in template_g_content
     assert "handleCardTap" in template_g_content
+
+def test_new_game_sound_match():
+    """Test details of the newly added sound_match Litera game (Template H)."""
+    response = client.get("/api/games/sound_match")
+    assert response.status_code == 200
+    game = response.json()
+    
+    assert game["id"] == "sound_match"
+    assert game["section"] == "litera"
+    assert game["template_type"] == "template_h"
+
+def test_template_h_js_and_app_js():
+    """Verify HTML script link and app.js routing for Template H."""
+    # 1. Verify index.html loads template_h.js
+    index_path = os.path.join("static", "index.html")
+    with open(index_path, "r", encoding="utf-8") as f:
+        index_content = f.read()
+    assert 'src="/static/js/games/template_h.js"' in index_content
+
+    # 2. Verify app.js routes template_h
+    app_js_path = os.path.join("static", "js", "app.js")
+    with open(app_js_path, "r", encoding="utf-8") as f:
+        app_js_content = f.read()
+    assert "template_h" in app_js_content
+    assert "TemplateH.init" in app_js_content
+
+    # 3. Verify template_h.js contains speakPrompt, Hear Again, and handleCardTap
+    template_h_path = os.path.join("static", "js", "games", "template_h.js")
+    assert os.path.exists(template_h_path)
+    with open(template_h_path, "r", encoding="utf-8") as f:
+        template_h_content = f.read()
+    assert "speakPrompt" in template_h_content
+    assert "HEAR AGAIN" in template_h_content
+    assert "handleCardTap" in template_h_content

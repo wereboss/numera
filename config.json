@@ -238,6 +238,42 @@
           "Step 3: Ask them why it is different, and cheer when they spot it!"
         ]
       }
+    },
+    "template_h": {
+      "digital": {
+        "rounds": 3,
+        "items": [
+          {"emoji": "🍎", "word": "Apple"},
+          {"emoji": "🍌", "word": "Banana"},
+          {"emoji": "🐶", "word": "Dog"},
+          {"emoji": "🐱", "word": "Cat"},
+          {"emoji": "🦁", "word": "Lion"},
+          {"emoji": "🐮", "word": "Cow"},
+          {"emoji": "🐸", "word": "Frog"},
+          {"emoji": "🐷", "word": "Pig"},
+          {"emoji": "🐼", "word": "Panda"},
+          {"emoji": "🐨", "word": "Koala"},
+          {"emoji": "🚗", "word": "Car"},
+          {"emoji": "✈️", "word": "Plane"},
+          {"emoji": "🚒", "word": "Firetruck"},
+          {"emoji": "🚢", "word": "Ship"},
+          {"emoji": "⚽", "word": "Ball"},
+          {"emoji": "🧸", "word": "Toy"},
+          {"emoji": "🍕", "word": "Pizza"},
+          {"emoji": "🍦", "word": "Ice Cream"},
+          {"emoji": "🍩", "word": "Donut"}
+        ],
+        "start_message": "Show me the ",
+        "success_message": "Splendid! You matched all the sounds!"
+      },
+      "companion": {
+        "instructions": [
+          "Step 1: Lay out 3 or 4 different toys in front of your child.",
+          "Step 2: Clearly say: 'Show me the [toy name]!'",
+          "Step 3: Encourage them to tap or pick up the correct toy.",
+          "Step 4: Celebrate their success together!"
+        ]
+      }
     }
   }
 }
