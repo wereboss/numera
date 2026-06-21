@@ -1001,7 +1001,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     gap: 80px; /* Leave space for lines */
     position: relative;
     z-index: 10;
@@ -1035,6 +1035,7 @@ h1 {
     min-width: 140px;
     padding: 0 20px;
     white-space: nowrap;
+    flex-shrink: 0;
     height: 100px;
     background: white;
     border: 5px solid #FF9800; /* default orange */
@@ -1109,8 +1110,8 @@ h1 {
     }
     
     .line-match-columns {
-        gap: 40px;
-        max-width: 450px;
+        gap: 30px;
+        max-width: 100%;
     }
     
     .line-match-column {

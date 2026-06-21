@@ -145,7 +145,7 @@ const TemplateI = {
             const card = document.createElement('div');
             card.className = 'line-match-card';
             card.innerText = pair.left;
-            if (pair.left.length > 3) {
+            if (type === "names") {
                 card.classList.add('text-card');
             }
 
