@@ -189,9 +189,17 @@ const TemplateJ = {
         if (bubble.dataset.counted === "true") return;
         bubble.dataset.counted = "true";
         bubble.classList.add('counted');
-        this.state.countedSoFar++;
 
-        const speech = new SpeechSynthesisUtterance(this.state.countedSoFar.toString());
+        let speakNum = 0;
+        if (this.state.gameType === "addition") {
+            const grid = bubble.parentElement;
+            speakNum = grid.querySelectorAll('.helper-emoji-bubble.counted').length;
+        } else {
+            this.state.countedSoFar++;
+            speakNum = this.state.countedSoFar;
+        }
+
+        const speech = new SpeechSynthesisUtterance(speakNum.toString());
         speech.rate = 1.0;
         speech.pitch = 1.3;
         window.speechSynthesis.speak(speech);
