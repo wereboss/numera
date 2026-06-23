@@ -237,7 +237,7 @@ const TemplateJ = {
                 } else {
                     this.triggerFinale(document.getElementById('game-canvas'));
                 }
-            }, 2000);
+            }, 4000);
         } else {
             this.state.locked = true;
             cardEl.classList.add('incorrect-choice');
