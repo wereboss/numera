@@ -134,7 +134,8 @@ const TemplateH = {
                 clearTimeout(this.state.speechTimeout);
             }
 
-            const oops = new SpeechSynthesisUtterance("Try again!");
+            const oopsText = window.getGlobalFeedback("incorrect", "Try again!");
+            const oops = new SpeechSynthesisUtterance(oopsText);
             oops.pitch = 1.2;
             window.speechSynthesis.speak(oops);
 

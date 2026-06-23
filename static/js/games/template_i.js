@@ -294,7 +294,8 @@ const TemplateI = {
                     }
                 } else {
                     // Incorrect Match
-                    const oops = new SpeechSynthesisUtterance("Try again!");
+                    const oopsText = window.getGlobalFeedback("incorrect", "Try again!");
+                    const oops = new SpeechSynthesisUtterance(oopsText);
                     oops.pitch = 1.1;
                     window.speechSynthesis.speak(oops);
 

@@ -13,6 +13,12 @@
       "primary_color": "#4CAF50"
     }
   ],
+  "global_feedback": {
+    "incorrect": "Try again!",
+    "correct_generic": "Yay! You got it!",
+    "correct_completion": "Yay! You did it!",
+    "correct_cleanup": "Wow! The room is perfectly clean!"
+  },
   "templates": {
     "template_a": {
       "digital": {

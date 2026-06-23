@@ -167,7 +167,8 @@ const TemplateD = {
                     matchedBucket.classList.add('wobble');
                     setTimeout(() => matchedBucket.classList.remove('wobble'), 400);
                     
-                    const oops = new SpeechSynthesisUtterance("Try again!");
+                    const oopsText = window.getGlobalFeedback("incorrect", "Try again!");
+                    const oops = new SpeechSynthesisUtterance(oopsText);
                     oops.pitch = 1.5; window.speechSynthesis.speak(oops);
                 }
             } else {
@@ -199,7 +200,8 @@ const TemplateD = {
         visual.style.fontSize = '8rem';
         visual.innerHTML = '🎉🧹🎉';
 
-        const cheer = new SpeechSynthesisUtterance("Wow! The room is perfectly clean!");
+        const cheerText = window.getGlobalFeedback("correct_cleanup", "Wow! The room is perfectly clean!");
+        const cheer = new SpeechSynthesisUtterance(cheerText);
         cheer.pitch = 1.2; window.speechSynthesis.speak(cheer);
 
         wrap.appendChild(title);

@@ -163,12 +163,14 @@ const TemplateA = {
                     btnContainer.innerHTML = '🎉🥳🎈';
                     btnContainer.style.fontSize = '4rem';
                     if (window.triggerEmojiRain) window.triggerEmojiRain();
-                    const cheer = new SpeechSynthesisUtterance("Yay! You got it!");
+                    const cheerText = window.getGlobalFeedback("correct_generic", "Yay! You got it!");
+                    const cheer = new SpeechSynthesisUtterance(cheerText);
                     cheer.pitch = 1.2; 
                     window.speechSynthesis.speak(cheer);
                 } else {
                     title.innerText = "Let's try again!";
-                    const oops = new SpeechSynthesisUtterance("Try again!");
+                    const oopsText = window.getGlobalFeedback("incorrect", "Try again!");
+                    const oops = new SpeechSynthesisUtterance(oopsText);
                     window.speechSynthesis.speak(oops);
                 }
             };

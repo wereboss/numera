@@ -242,7 +242,8 @@ const TemplateJ = {
             this.state.locked = true;
             cardEl.classList.add('incorrect-choice');
 
-            const oops = new SpeechSynthesisUtterance("Try again!");
+            const oopsText = window.getGlobalFeedback("incorrect", "Try again!");
+            const oops = new SpeechSynthesisUtterance(oopsText);
             oops.pitch = 1.2;
             window.speechSynthesis.speak(oops);
 

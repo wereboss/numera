@@ -151,7 +151,8 @@ const TemplateC = {
                         matchedSlot = slot;
                         break;
                     } else {
-                        const oops = new SpeechSynthesisUtterance("Try again!");
+                        const oopsText = window.getGlobalFeedback("incorrect", "Try again!");
+                        const oops = new SpeechSynthesisUtterance(oopsText);
                         oops.pitch = 1.5; window.speechSynthesis.speak(oops);
                     }
                 }
@@ -198,7 +199,8 @@ const TemplateC = {
         visual.style.fontSize = '8rem';
         visual.innerHTML = '🎉😻🎉';
 
-        const cheer = new SpeechSynthesisUtterance("Yay! You did it! Everyone is happy.");
+        const cheerText = window.getGlobalFeedback("correct_completion", "Yay! You did it!");
+        const cheer = new SpeechSynthesisUtterance(cheerText);
         cheer.pitch = 1.2; window.speechSynthesis.speak(cheer);
 
         wrap.appendChild(title);

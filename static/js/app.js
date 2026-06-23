@@ -5,6 +5,13 @@ let cachedGames = []; // Store all published games for instant filtering
 let activeSection = null; // Dynamically set based on configuration
 let sectionsList = []; // Loaded from master config
 
+window.getGlobalFeedback = function(key, defaultValue) {
+    if (window.masterConfig && window.masterConfig.global_feedback && window.masterConfig.global_feedback[key]) {
+        return window.masterConfig.global_feedback[key];
+    }
+    return defaultValue;
+};
+
 function enterFullscreen() {
     const elem = document.documentElement;
     

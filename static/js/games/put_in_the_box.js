@@ -105,7 +105,8 @@ const PutInTheBox = {
         if (this.state.count === this.state.total) {
             if (window.triggerEmojiRain) window.triggerEmojiRain();
             setTimeout(() => {
-                const cheer = new SpeechSynthesisUtterance("Yay! You did it!");
+                const cheerText = window.getGlobalFeedback("correct_completion", "Yay! You did it!");
+                const cheer = new SpeechSynthesisUtterance(cheerText);
                 window.speechSynthesis.speak(cheer);
                 // Optional: reset game or exit automatically
             }, 1000);

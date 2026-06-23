@@ -73,7 +73,8 @@ const TemplateB = {
                     
                     if (window.triggerEmojiRain) window.triggerEmojiRain();
                     setTimeout(() => {
-                        const cheer = new SpeechSynthesisUtterance("Yay! You did it!");
+                        const cheerText = window.getGlobalFeedback("correct_completion", "Yay! You did it!");
+                        const cheer = new SpeechSynthesisUtterance(cheerText);
                         cheer.pitch = 1.2; window.speechSynthesis.speak(cheer);
                     }, 500);
                 }
