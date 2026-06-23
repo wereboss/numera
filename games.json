@@ -466,5 +466,53 @@
         "success_message": "Awesome! You matched all the names!"
       }
     }
+  },
+  {
+    "id": "touch_count",
+    "title": "Touch and Count",
+    "icon": "👉",
+    "section": "numera",
+    "has_digital_mode": true,
+    "has_companion_mode": true,
+    "template_type": "template_j",
+    "config": {
+      "digital": {
+        "game_type": "counting",
+        "start_message": "Touch and count the emojis!",
+        "success_message": "Excellent counting!"
+      },
+      "companion": {
+        "instructions": [
+          "Step 1: Put some toys on the floor (e.g., {target_count} toys).",
+          "Step 2: Guide your child to touch each toy and count them together.",
+          "Step 3: Point to the answer choices on the screen ({choices}) and ask them to select the correct number.",
+          "Step 4: Praise their counting!"
+        ]
+      }
+    }
+  },
+  {
+    "id": "touch_addition",
+    "title": "Touch and Add",
+    "icon": "➕",
+    "section": "numera",
+    "has_digital_mode": true,
+    "has_companion_mode": true,
+    "template_type": "template_j",
+    "config": {
+      "digital": {
+        "game_type": "addition",
+        "start_message": "Add the emojis together!",
+        "success_message": "Splendid addition!"
+      },
+      "companion": {
+        "instructions": [
+          "Step 1: Put two groups of toys on the floor (e.g. {addendA} blocks and {addendB} cars).",
+          "Step 2: Ask your child to touch and count both groups together.",
+          "Step 3: Point to the answer choices on the screen ({choices}) and ask them to choose the correct total.",
+          "Step 4: Celebrate their math skills!"
+        ]
+      }
+    }
   }
 ]

@@ -188,6 +188,8 @@ async function launchGame(gameId) {
         TemplateH.init('game-canvas', globalMode, currentGame.config);
     } else if (currentGame.template_type === 'template_i') {
         TemplateI.init('game-canvas', globalMode, currentGame.config);
+    } else if (currentGame.template_type === 'template_j') {
+        TemplateJ.init('game-canvas', globalMode, currentGame.config);
     } else {
         alert(`Template ${currentGame.template_type} is not built yet!`);
     }

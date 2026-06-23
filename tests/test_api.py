@@ -314,3 +314,48 @@ def test_template_i_js_and_app_js():
     assert "drawLines" in template_i_content
     assert "resizeCanvas" in template_i_content
     assert "bindDotEvents" in template_i_content
+
+def test_new_games_counting_addition_helper():
+    """Test details of the newly added touch_count and touch_addition games (Template J)."""
+    # 1. Touch Count Game
+    response = client.get("/api/games/touch_count")
+    assert response.status_code == 200
+    game = response.json()
+    assert game["id"] == "touch_count"
+    assert game["section"] == "numera"
+    assert game["template_type"] == "template_j"
+    assert game["config"]["digital"]["game_type"] == "counting"
+
+    # 2. Touch Addition Game
+    response = client.get("/api/games/touch_addition")
+    assert response.status_code == 200
+    game = response.json()
+    assert game["id"] == "touch_addition"
+    assert game["section"] == "numera"
+    assert game["template_type"] == "template_j"
+    assert game["config"]["digital"]["game_type"] == "addition"
+
+def test_template_j_js_and_app_js():
+    """Verify HTML script link and app.js routing for Template J."""
+    # 1. Verify index.html loads template_j.js
+    index_path = os.path.join("static", "index.html")
+    with open(index_path, "r", encoding="utf-8") as f:
+        index_content = f.read()
+    assert 'src="/static/js/games/template_j.js"' in index_content
+
+    # 2. Verify app.js routes template_j
+    app_js_path = os.path.join("static", "js", "app.js")
+    with open(app_js_path, "r", encoding="utf-8") as f:
+        app_js_content = f.read()
+    assert "template_j" in app_js_content
+    assert "TemplateJ.init" in app_js_content
+
+    # 3. Verify template_j.js contains key functions
+    template_j_path = os.path.join("static", "js", "games", "template_j.js")
+    assert os.path.exists(template_j_path)
+    with open(template_j_path, "r", encoding="utf-8") as f:
+        template_j_content = f.read()
+    assert "startRound" in template_j_content
+    assert "handleEmojiTap" in template_j_content
+    assert "handleChoiceTap" in template_j_content
+    assert "generateChoices" in template_j_content

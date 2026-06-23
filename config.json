@@ -304,6 +304,26 @@
           "Step 4: Practice saying the words together."
         ]
       }
+    },
+    "template_j": {
+      "digital": {
+        "rounds": 3,
+        "emojis": ["🍎", "🚗", "🍌", "⭐", "🎈", "🐶", "🦖", "🍕"],
+        "min_count": 3,
+        "max_count": 10,
+        "min_single": 1,
+        "max_single": 5,
+        "start_message": "Touch and count the emojis!",
+        "success_message": "Splendid counting!"
+      },
+      "companion": {
+        "instructions": [
+          "Step 1: Place a group of toys on the left (or two groups for addition).",
+          "Step 2: Guide your child to count them one-by-one by touching each toy.",
+          "Step 3: Point to the answer choices on screen and ask them to select the correct number.",
+          "Step 4: Celebrate their success!"
+        ]
+      }
     }
   }
 }
