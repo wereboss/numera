@@ -1382,3 +1382,28 @@ h1 {
         border-width: 4px;
     }
 }
+
+/* --- Fluttering Emoji Success Animation --- */
+@keyframes emoji-flutter {
+    0% {
+        transform: translateY(0) rotate(0deg) translateX(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(50vh) rotate(180deg) translateX(25px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(105vh) rotate(360deg) translateX(-25px);
+        opacity: 0;
+    }
+}
+
+.fluttering-emoji {
+    position: fixed;
+    top: -60px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: emoji-flutter linear forwards;
+    user-select: none;
+}

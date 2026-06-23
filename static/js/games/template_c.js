@@ -151,7 +151,7 @@ const TemplateC = {
                         matchedSlot = slot;
                         break;
                     } else {
-                        const oops = new SpeechSynthesisUtterance("No thank you!");
+                        const oops = new SpeechSynthesisUtterance("Try again!");
                         oops.pitch = 1.5; window.speechSynthesis.speak(oops);
                     }
                 }
@@ -184,6 +184,7 @@ const TemplateC = {
     },
 
     triggerFinale: function(container) {
+        if (window.triggerEmojiRain) window.triggerEmojiRain();
         container.innerHTML = ''; 
 
         const wrap = document.createElement('div');

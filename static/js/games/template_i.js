@@ -370,6 +370,7 @@ const TemplateI = {
         }
 
         container.innerHTML = '';
+        if (window.triggerEmojiRain) window.triggerEmojiRain();
 
         const wrap = document.createElement('div');
         wrap.className = 'companion-container';

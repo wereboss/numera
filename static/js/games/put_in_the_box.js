@@ -103,6 +103,7 @@ const PutInTheBox = {
         window.speechSynthesis.speak(speech);
 
         if (this.state.count === this.state.total) {
+            if (window.triggerEmojiRain) window.triggerEmojiRain();
             setTimeout(() => {
                 const cheer = new SpeechSynthesisUtterance("Yay! You did it!");
                 window.speechSynthesis.speak(cheer);

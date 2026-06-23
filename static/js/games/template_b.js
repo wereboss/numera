@@ -71,6 +71,7 @@ const TemplateB = {
                     header.style.color = '#4CAF50';
                     btn.innerHTML = '🎉';
                     
+                    if (window.triggerEmojiRain) window.triggerEmojiRain();
                     setTimeout(() => {
                         const cheer = new SpeechSynthesisUtterance("Yay! You did it!");
                         cheer.pitch = 1.2; window.speechSynthesis.speak(cheer);

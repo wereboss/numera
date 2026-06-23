@@ -216,3 +216,32 @@ function exitGame() {
 
 // Initialize safely
 loadMasterConfig().then(() => loadGames());
+
+// Global fluttering emoji rain success animation
+window.triggerEmojiRain = function() {
+    const emojis = ["🎉", "🎈", "✨", "🌟", "🏆", "🍕", "🚗", "🦖", "🐶", "🍎", "🧁", "🦁", "🚂", "🌈"];
+    const container = document.body;
+    const count = 45;
+    for (let i = 0; i < count; i++) {
+        const el = document.createElement('div');
+        el.className = 'fluttering-emoji';
+        el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        el.style.left = `${Math.random() * 100}vw`;
+        
+        const size = Math.random() * 2 + 1.5; // 1.5rem to 3.5rem
+        el.style.fontSize = `${size}rem`;
+        
+        const duration = Math.random() * 3 + 2; // 2s to 5s
+        el.style.animationDuration = `${duration}s`;
+        
+        const delay = Math.random() * 2; // 0s to 2s
+        el.style.animationDelay = `${delay}s`;
+        
+        container.appendChild(el);
+        
+        // Clean up element after animation finishes
+        setTimeout(() => {
+            el.remove();
+        }, (duration + delay) * 1000 + 100);
+    }
+};

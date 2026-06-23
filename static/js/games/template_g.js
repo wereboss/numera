@@ -115,6 +115,7 @@ const TemplateG = {
     },
 
     triggerFinale: function(container) {
+        if (window.triggerEmojiRain) window.triggerEmojiRain();
         container.innerHTML = '';
 
         const wrap = document.createElement('div');

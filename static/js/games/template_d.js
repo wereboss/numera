@@ -167,7 +167,7 @@ const TemplateD = {
                     matchedBucket.classList.add('wobble');
                     setTimeout(() => matchedBucket.classList.remove('wobble'), 400);
                     
-                    const oops = new SpeechSynthesisUtterance("Uh oh!");
+                    const oops = new SpeechSynthesisUtterance("Try again!");
                     oops.pitch = 1.5; window.speechSynthesis.speak(oops);
                 }
             } else {
@@ -186,6 +186,7 @@ const TemplateD = {
     },
 
     triggerFinale: function(container) {
+        if (window.triggerEmojiRain) window.triggerEmojiRain();
         container.innerHTML = ''; 
         const wrap = document.createElement('div');
         wrap.className = 'companion-container';

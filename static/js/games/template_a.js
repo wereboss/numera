@@ -162,12 +162,13 @@ const TemplateA = {
                     title.innerText = this.state.config.digital.success_message;
                     btnContainer.innerHTML = '🎉🥳🎈';
                     btnContainer.style.fontSize = '4rem';
+                    if (window.triggerEmojiRain) window.triggerEmojiRain();
                     const cheer = new SpeechSynthesisUtterance("Yay! You got it!");
                     cheer.pitch = 1.2; 
                     window.speechSynthesis.speak(cheer);
                 } else {
                     title.innerText = "Let's try again!";
-                    const oops = new SpeechSynthesisUtterance("Uh oh, try again.");
+                    const oops = new SpeechSynthesisUtterance("Try again!");
                     window.speechSynthesis.speak(oops);
                 }
             };
