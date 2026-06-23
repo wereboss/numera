@@ -77,6 +77,11 @@ const TemplateJ = {
 
         if (gameType === "addition") {
             // First Grid
+        const gridsRow = document.createElement('div');
+        gridsRow.className = 'helper-grids-row';
+
+        if (gameType === "addition") {
+            // First Grid
             const gridA = document.createElement('div');
             gridA.className = 'helper-emoji-grid';
             gridA.dataset.size = addendA;
@@ -88,13 +93,13 @@ const TemplateJ = {
                 bubble.addEventListener('pointerdown', () => this.handleEmojiTap(bubble));
                 gridA.appendChild(bubble);
             }
-            leftPane.appendChild(gridA);
+            gridsRow.appendChild(gridA);
 
             // Plus Sign
             const plus = document.createElement('div');
             plus.className = 'helper-plus-sign';
             plus.innerText = "+";
-            leftPane.appendChild(plus);
+            gridsRow.appendChild(plus);
 
             // Second Grid
             const gridB = document.createElement('div');
@@ -108,7 +113,7 @@ const TemplateJ = {
                 bubble.addEventListener('pointerdown', () => this.handleEmojiTap(bubble));
                 gridB.appendChild(bubble);
             }
-            leftPane.appendChild(gridB);
+            gridsRow.appendChild(gridB);
         } else {
             // Single Grid
             const grid = document.createElement('div');
@@ -122,8 +127,16 @@ const TemplateJ = {
                 bubble.addEventListener('pointerdown', () => this.handleEmojiTap(bubble));
                 grid.appendChild(bubble);
             }
-            leftPane.appendChild(grid);
+            gridsRow.appendChild(grid);
         }
+        leftPane.appendChild(gridsRow);
+
+        // Visual Count/Equation Label under the grids
+        const equationLabel = document.createElement('div');
+        equationLabel.className = 'helper-equation-label';
+        equationLabel.id = 'helper-equation-label';
+        leftPane.appendChild(equationLabel);
+
         playArea.appendChild(leftPane);
 
         // Right Pane: Multiple Choices
@@ -193,6 +206,17 @@ const TemplateJ = {
             this.state.locked = true;
             cardEl.classList.add('correct-choice');
 
+            // Show the visual number / equation under the grids
+            const labelEl = document.getElementById('helper-equation-label');
+            if (labelEl) {
+                if (this.state.gameType === "addition") {
+                    labelEl.innerText = `${this.state.addendA} + ${this.state.addendB} = ${this.state.targetCount}`;
+                } else {
+                    labelEl.innerText = `${this.state.targetCount}`;
+                }
+                labelEl.classList.add('visible');
+            }
+
             let feedbackText = "";
             if (this.state.gameType === "addition") {
                 feedbackText = `Yes! ${this.state.addendA} plus ${this.state.addendB} is ${this.state.targetCount}!`;
@@ -202,7 +226,11 @@ const TemplateJ = {
 
             const speech = new SpeechSynthesisUtterance(feedbackText);
             speech.pitch = 1.3;
-            window.speechSynthesis.speak(speech);
+            
+            // Brief delay so child visualizes the visual number before hearing it
+            setTimeout(() => {
+                window.speechSynthesis.speak(speech);
+            }, 400);
 
             setTimeout(() => {
                 this.state.currentRound++;
