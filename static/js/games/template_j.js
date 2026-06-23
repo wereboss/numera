@@ -75,8 +75,6 @@ const TemplateJ = {
         const leftPane = document.createElement('div');
         leftPane.className = 'helper-left-pane';
 
-        if (gameType === "addition") {
-            // First Grid
         const gridsRow = document.createElement('div');
         gridsRow.className = 'helper-grids-row';
 
